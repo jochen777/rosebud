@@ -1,0 +1,29 @@
+{
+    "template": "lib/_head",
+    "data": {
+      "meta":"Rosebud Title"
+    },
+    "childs":
+      [
+	      { 
+	      "template": "_test" },
+	      { "template": "_content", 
+	       "data": {
+      			"cont":"erster Content"
+		    }
+	      },
+	      { "template": "lib/main_container", 
+	      	"childs": [
+		      { "template": "_content" },
+		      { "template": "_content", 
+		      	       "data": {
+      			"cont":"letzter Content"
+		    }
+		      
+		      }
+	      	]
+	      
+	      }
+	]
+    
+}

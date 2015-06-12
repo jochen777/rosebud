@@ -1,0 +1,32 @@
+The brand new, pragmatic, compact, fast and component based webframework to generate websites.
+
+* global variables do not override local variables (OK)
+* cool error handling (bean not there, template not there...) - (OK)
+* New Error-Handling Class (OK)
+* Einführen von Unit-Tests (OK)
+* rename "type" to "beanName" (OK)
+* create a new config name: "classname" that tries to instanciate... (OK)
+* clean up (OK)
+* GIT (github)
+* Allow Direct JSON-Defintions in controller
+* Events: Say header to include a new js
+* Caching
+* Tree creation at runtime
+* Try different template engine (freemarker)
+* Makros (partials)
+* Componenten zusammenlegen (java + template)
+* Warning, if global data is overwritten by local (can be switched on or off!) Maybe dev-mode?
+* Maybe template abstraction to get more than one Template engine running? (YAGNI?)
+* Trader, der entscheidet, welches Templates angezogen werden.
+* Parameterliste für Fragments spezifizieren, damit Fragments nicht das komplette Request Object benötigen - was ist mit Cookies? etc - evtl. als Objekt reinreichen, wenn man unbedingt will!
+* Superior error-display (aufklappbarer Stacktrace...)
+* Fragment-Tree at the bottom
+* build some nice components (menu, header, head, footer, list, teasers, gallery...)
+* debug-mode: Gibt Kommentare über- und unter Templates aus.
+ 
+
+
+
+TBD:
+* Is global data really useful?
+* Useful to have an "end-template"? or better a template with an embedded Tag (<ROSEBUD_CONTENT>), like Gauss VIP?

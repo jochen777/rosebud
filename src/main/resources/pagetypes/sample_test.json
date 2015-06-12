@@ -1,0 +1,23 @@
+{
+    "classname": "de.rosebud.core.NormalFragment",
+    "template": "unittest",
+    "data": {
+        "test": "mytest"
+    },
+    "childs": [
+        {
+            "classname": "de.rosebud.core.NormalFragment",
+            "template": "unittest_child",
+            "data": {
+                "cont": "Child1"
+            }
+        },
+        {
+            "classname": "de.rosebud.core.NormalFragment",
+            "template": "unittest_child",
+            "data": {
+                "cont": "Child2"
+            }
+        }
+    ]
+}
