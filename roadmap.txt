@@ -11,7 +11,7 @@ New complex websites in minutes.
 * create a new config name: "classname" that tries to instanciate... (OK)
 * clean up (OK)
 * GIT (github) (OK)
-* Events: Say header to include a new js
+* Events: Say header to include a new js (create this by a publish&subscribe mechanism) http://tomaszdziurko.pl/2012/01/google-guava-eventbus-easy-elegant-publisher-subscriber-cases/
 * Caching
 * Tree creation at runtime
 * Try different template engine (freemarker)

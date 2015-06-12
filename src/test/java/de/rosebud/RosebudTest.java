@@ -18,8 +18,8 @@ public class RosebudTest {
 		Loader loader = new Loader();
 		Fragment root = loader.load("sample_test");
 		Map<String, Object> model = new HashMap<String, Object>();
-		ContentBuilder.contentLoad(model, root);
-		String htmlOutput = ContentBuilder.getContent(root);
+
+		String htmlOutput = ContentBuilder.createPage(model, root);
 
 		assertEquals("Hello World mytestChild Child1Child Child2", htmlOutput);
 	}

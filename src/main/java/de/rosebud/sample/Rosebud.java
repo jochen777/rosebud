@@ -23,8 +23,7 @@ public class Rosebud {
 		Fragment root = loader.load("sample");
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("cont", "Global content");
-		ContentBuilder.contentLoad(model, root);
-		return ContentBuilder.getContent(root);
+		return ContentBuilder.createPage(model, root);
 	}
 
 

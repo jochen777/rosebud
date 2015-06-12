@@ -29,9 +29,10 @@ public class RosebudApplicationTests {
 	
 	@Test
 	public void testExampleTree() {
-		Fragment frag = loader.load("sample_test");
+		Fragment root = loader.load("sample_test");
 		Map<String, Object> model = new HashMap<String, Object>();
-		String htmlOutput = ContentBuilder.getContent(frag);
+		String htmlOutput = ContentBuilder.createPage(model, root);
+
 		assertEquals("Hello World mytestChild Child1Child Child2", htmlOutput);
 	}
 

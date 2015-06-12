@@ -6,9 +6,17 @@ import java.util.Map;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
+// RFE: Perhaps rename this to "rosebud" :)
 public class ContentBuilder {
+	
+	public static String createPage(Map<String, Object> globals, Fragment root) {
+		ContentBuilder.contentLoad(globals, root);
+		return ContentBuilder.getContent(root);
+	}
+	
+	
 	// Generates the HTML out of the prepared tree
-	public static String getContent(Fragment fragment) {
+	private static String getContent(Fragment fragment) {
 		// TODO: moeglichkeit bilden, dass kinderknoten daten dem
 		// uebergeordneten Inhalt bereitstellen
 		// Vielleicht zwei-pass anbieten?		
@@ -29,7 +37,7 @@ public class ContentBuilder {
 	}
 	
 	// Prepares the tree
-	public static void contentLoad(Map<String, Object> globals, Fragment fragment) {
+	private static void contentLoad(Map<String, Object> globals, Fragment fragment) {
 		// RFE: Do this async?
 		fragment.collectData(globals);
 		for (Fragment child : fragment.getChilds()) {
