@@ -32,6 +32,8 @@ New complex websites in minutes.
 
 
 
+
 TBD:
 * Is global data really useful?
 * Useful to have an "end-template"? or better a template with an embedded Tag (<ROSEBUD_CONTENT>), like Gauss VIP?
+* Event-System or better a message-bus?

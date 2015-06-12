@@ -5,6 +5,7 @@ import java.io.InputStream;
 
 import org.apache.commons.io.IOUtils;
 
+// some helper/conveniance methods that are not directly related to the core 
 public class RosebudHelper {
 
 	// convenient method to quickly set a new template to a specific fragment
