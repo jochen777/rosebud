@@ -30,6 +30,7 @@ public class ContentBuilder {
 	
 	// Prepares the tree
 	public static void contentLoad(Map<String, Object> globals, Fragment fragment) {
+		// RFE: Do this async?
 		fragment.collectData(globals);
 		for (Fragment child : fragment.getChilds()) {
 			ContentBuilder.contentLoad(globals, child);
