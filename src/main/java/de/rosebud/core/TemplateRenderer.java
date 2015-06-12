@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
-import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.core.io.ClassPathResource;
@@ -16,7 +15,7 @@ import com.samskivert.mustache.Mustache;
 public class TemplateRenderer {
 	
 	public static String parseTemplate(String file, Map<String, Object> data,
-			Map<String, Object> globals, Fragment source) {
+			 Fragment source) {
 		try {
 			Resource resource = new ClassPathResource("/templates/" + file
 					+ ".html");
@@ -31,19 +30,8 @@ public class TemplateRenderer {
 									+ ".html"));
 						}
 					});
-			Map<String, Object> merged = new HashMap<String, Object>();
-			// first collect all globals
-			if (globals != null) {
-				merged.putAll(globals);
-			}
-			// then put on top of this the fragment "local" data
-			// --> so local data in .json pagetypes will override globals.
-			// RFE: Perhaps make this configurable or discuss this!
-			if (data != null) {
-				merged.putAll(data);
-			}
 			try {
-				return c.compile(text).execute(merged);
+				return c.compile(text).execute(data);
 			} catch (Exception e) {
 				return ErrorHandler.getTemplateRenderErrorMessage(e, source);
 			}

@@ -1,4 +1,7 @@
 The brand new, pragmatic, compact, fast and component based webframework to generate websites.
+The component framework for component framework haters.
+Saves you ages of work. 
+New complex websites in minutes.
 
 * global variables do not override local variables (OK)
 * cool error handling (bean not there, template not there...) - (OK)
@@ -7,8 +10,7 @@ The brand new, pragmatic, compact, fast and component based webframework to gene
 * rename "type" to "beanName" (OK)
 * create a new config name: "classname" that tries to instanciate... (OK)
 * clean up (OK)
-* GIT (github)
-* Allow Direct JSON-Defintions in controller
+* GIT (github) (OK)
 * Events: Say header to include a new js
 * Caching
 * Tree creation at runtime
@@ -23,7 +25,10 @@ The brand new, pragmatic, compact, fast and component based webframework to gene
 * Fragment-Tree at the bottom
 * build some nice components (menu, header, head, footer, list, teasers, gallery...)
 * debug-mode: Gibt Kommentare über- und unter Templates aus.
- 
+* Add Bootstrap components
+* Add possibility to change between different template-sets
+* Allow Direct JSON-Defintions in controller
+* import template set / provide template-sets (as jars?)
 
 
 

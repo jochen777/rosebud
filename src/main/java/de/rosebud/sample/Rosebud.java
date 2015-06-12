@@ -20,10 +20,11 @@ public class Rosebud {
 
 	@RequestMapping("/rosebud")
 	public @ResponseBody String test() {
-		Fragment frag = loader.load("sample");
+		Fragment root = loader.load("sample");
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("cont", "Global content");
-		return ContentBuilder.getContent(model, frag);
+		ContentBuilder.contentLoad(model, root);
+		return ContentBuilder.getContent(root);
 	}
 
 

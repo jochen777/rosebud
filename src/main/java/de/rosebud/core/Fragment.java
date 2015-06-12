@@ -40,6 +40,7 @@ public class Fragment {
 		return data;
 	}
 
+	// initial data
 	public void setData(Map<String, Object> data) {
 		this.data = data;
 	}
@@ -57,7 +58,7 @@ public class Fragment {
 		this.parent = parent;
 	}
 
-	public void collectData() {
+	public void collectData(Map<String, Object> data) {
 		// collect here your data! -> should be overriden
 	}
 

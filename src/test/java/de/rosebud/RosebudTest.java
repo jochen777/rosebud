@@ -16,9 +16,11 @@ public class RosebudTest {
 	@Test
 	public void testExampleTree() {
 		Loader loader = new Loader();
-		Fragment frag = loader.load("sample_test");
+		Fragment root = loader.load("sample_test");
 		Map<String, Object> model = new HashMap<String, Object>();
-		String htmlOutput = ContentBuilder.getContent(model, frag);
+		ContentBuilder.contentLoad(model, root);
+		String htmlOutput = ContentBuilder.getContent(root);
+
 		assertEquals("Hello World mytestChild Child1Child Child2", htmlOutput);
 	}
 
