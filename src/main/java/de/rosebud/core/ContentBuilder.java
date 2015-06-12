@@ -6,11 +6,15 @@ import java.util.Map;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
+import com.google.common.eventbus.EventBus;
+
 // RFE: Perhaps rename this to "rosebud" :)
 public class ContentBuilder {
 	
 	public static String createPage(Map<String, Object> globals, Fragment root) {
-		ContentBuilder.contentLoad(globals, root);
+		EventBus eventBus = new EventBus("rosebud-page"+root.getName());
+		ContentBuilder.registerListeners(root, eventBus);
+		ContentBuilder.contentLoad(globals, root, eventBus);
 		return ContentBuilder.getContent(root);
 	}
 	
@@ -37,12 +41,21 @@ public class ContentBuilder {
 	}
 	
 	// Prepares the tree
-	private static void contentLoad(Map<String, Object> globals, Fragment fragment) {
+	private static void contentLoad(Map<String, Object> globals, Fragment fragment, EventBus eventBus) {
 		// RFE: Do this async?
-		fragment.collectData(globals);
+		fragment.collectData(globals, eventBus);
 		for (Fragment child : fragment.getChilds()) {
-			ContentBuilder.contentLoad(globals, child);
+			ContentBuilder.contentLoad(globals, child, eventBus);
 		}
 	}
 
+	// Prepares the tree
+	private static void registerListeners(Fragment fragment, EventBus eventBus) {
+		fragment.registerListeners(eventBus);
+		for (Fragment child : fragment.getChilds()) {
+			ContentBuilder.registerListeners(child, eventBus);
+		}
+	}
+
+	
 }

@@ -24,4 +24,16 @@ public class RosebudTest {
 		assertEquals("Hello World mytestChild Child1Child Child2", htmlOutput);
 	}
 
+	@Test
+	public void testJSHead() {
+		Loader loader = new Loader();
+		Fragment root = loader.load("sample_js_head");
+		Map<String, Object> model = new HashMap<String, Object>();
+
+		String htmlOutput = ContentBuilder.createPage(model, root);
+
+		assertEquals("Header Elemnt JS:/js/example.js\nChild Child1Child Child2", htmlOutput);
+	}
+
+
 }

@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.google.common.eventbus.EventBus;
+
 /**
  * Core fragment Object. Multiple fragments form a tree. A fragment gets or
  * collects some data and render this with a template
@@ -58,11 +60,16 @@ public class Fragment {
 		this.parent = parent;
 	}
 
-	public void collectData(Map<String, Object> additionalData) {
+	public void collectData(Map<String, Object> additionalData, EventBus eventBus) {
 		// collect here your data! -> should be overriden
 	}
 
-
+	// may be overriden, if needed!
+	public void registerListeners(EventBus eventBus) {
+		
+	}
+	
+	
 	public Fragment setStartTemplate(String startTemplate) {
 		this.startTemplate = startTemplate;
 		return this;

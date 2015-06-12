@@ -11,7 +11,7 @@ New complex websites in minutes.
 * create a new config name: "classname" that tries to instanciate... (OK)
 * clean up (OK)
 * GIT (github) (OK)
-* Events: Say header to include a new js (create this by a publish&subscribe mechanism) http://tomaszdziurko.pl/2012/01/google-guava-eventbus-easy-elegant-publisher-subscriber-cases/
+* Events: Say header to include a new js (create this by a publish&subscribe mechanism) http://tomaszdziurko.pl/2012/01/google-guava-eventbus-easy-elegant-publisher-subscriber-cases/ (OK)
 * Caching
 * Tree creation at runtime
 * Try different template engine (freemarker)
@@ -29,6 +29,7 @@ New complex websites in minutes.
 * Add possibility to change between different template-sets
 * Allow Direct JSON-Defintions in controller
 * import template set / provide template-sets (as jars?)
+* Check why Event Bus is so slow!
 
 
 
