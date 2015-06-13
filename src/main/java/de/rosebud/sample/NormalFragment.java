@@ -9,4 +9,12 @@ import de.rosebud.core.Fragment;
 @Scope("prototype")
 public class NormalFragment extends Fragment{
 
+	public NormalFragment() {
+		super();
+	}
+
+	public NormalFragment(String startTemplate){
+		super(startTemplate);
+	}
+
 }

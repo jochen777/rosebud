@@ -10,6 +10,7 @@ import org.junit.Test;
 import de.rosebud.core.ContentBuilder;
 import de.rosebud.core.Fragment;
 import de.rosebud.core.Loader;
+import de.rosebud.sample.NormalFragment;
 
 public class RosebudTest {
 	
@@ -35,5 +36,26 @@ public class RosebudTest {
 		assertEquals("Header Elemnt JS:/js/example.js\nChild Child1Child Child2", htmlOutput);
 	}
 
+	
+	@Test
+	public void testDynamicPageCreation() {
+
+
+		NormalFragment root = new NormalFragment("unittest");
+		root.addSingleData("test", "testcontent");
+		
+		NormalFragment child1 = new NormalFragment("unittest_child");
+		child1.addSingleData("cont", "childcontent");
+		
+		NormalFragment child2 = new NormalFragment("unittest_child");
+		child2.addSingleData("cont", "childcontent");
+		
+		root.addChild(child1);
+		root.addChild(child2);
+
+		String htmlOutput = ContentBuilder.createPage(null, root);
+
+		assertEquals("Hello World testcontentChild childcontentChild childcontent", htmlOutput);
+	}
 
 }

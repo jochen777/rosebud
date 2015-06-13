@@ -30,7 +30,7 @@ New complex websites in minutes.
 * import template set / provide template-sets (as jars?)
 * Check why Event Bus is so slow!
 * provide indenpendance from EventBus (two ways to render: With or without interfragment communication)
-* template-Renderer with interface, even more central! (with help of a bean?)
+* template-Renderer with interface, even more central! (with help of a bean?, singleton)
 * Caching (Config-Tree; Fragments with exact same Template, Input-Data and without listeners) 
 
 

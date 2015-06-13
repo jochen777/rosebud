@@ -13,6 +13,15 @@ import de.rosebud.sample.events.AddResourceToHeaderEvent;
 // is an html - head element with title, js-includes etc.
 public class HeadFragment extends Fragment {
 	
+	public HeadFragment() {
+		super();
+	}
+
+
+	public HeadFragment(String startTemplate){
+		super(startTemplate);
+	}
+
 	List<String> jsFileUrls = new ArrayList<String>();
 
 	@Subscribe

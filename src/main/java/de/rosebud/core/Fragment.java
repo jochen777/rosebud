@@ -16,6 +16,14 @@ import com.google.common.eventbus.EventBus;
  */
 public class Fragment {
 
+	public Fragment(String startTemplate){
+		this.startTemplate = startTemplate;
+	}
+	
+	public Fragment () {
+		
+	}
+	
 	// typical node informations
 	Fragment parent;
 	List<Fragment> childs = new ArrayList<Fragment>();
@@ -45,6 +53,10 @@ public class Fragment {
 	// initial data
 	public void setData(Map<String, Object> data) {
 		this.data = data;
+	}
+	
+	public void addSingleData(String key, Object data) {
+		this.data.put(key, data);
 	}
 
 	public String toString() {
