@@ -15,23 +15,13 @@ import com.samskivert.mustache.Mustache;
 public class TemplateRenderer {
 	
 	public static String parseTemplate(String file, Map<String, Object> data,
-			 Fragment source) {
+			 Fragment source, Mustache.Compiler compiler) {
 		try {
 			Resource resource = new ClassPathResource("/templates/" + file
 					+ ".html");
 			String text = RosebudHelper.readFile(resource.getInputStream());
-			Resource resourceDir = new ClassPathResource("/templates/");
-			final File templateDir = resourceDir.getFile();
-			Mustache.Compiler c = Mustache.compiler().withLoader(
-					new Mustache.TemplateLoader() {
-						public Reader getTemplate(String name)
-								throws FileNotFoundException {
-							return new FileReader(new File(templateDir, name
-									+ ".html"));
-						}
-					});
 			try {
-				return c.compile(text).execute(data);
+				return compiler.compile(text).execute(data);
 			} catch (Exception e) {
 				return ErrorHandler.getTemplateRenderErrorMessage(e, source);
 			}

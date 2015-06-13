@@ -12,7 +12,6 @@ New complex websites in minutes.
 * clean up (OK)
 * GIT (github) (OK)
 * Events: Say header to include a new js (create this by a publish&subscribe mechanism) http://tomaszdziurko.pl/2012/01/google-guava-eventbus-easy-elegant-publisher-subscriber-cases/ (OK)
-* Caching
 * Tree creation at runtime
 * Try different template engine (freemarker)
 * Makros (partials)
@@ -30,8 +29,9 @@ New complex websites in minutes.
 * Allow Direct JSON-Defintions in controller
 * import template set / provide template-sets (as jars?)
 * Check why Event Bus is so slow!
-
-
+* provide indenpendance from EventBus (two ways to render: With or without interfragment communication)
+* template-Renderer with interface, even more central! (with help of a bean?)
+* Caching (Config-Tree; Fragments with exact same Template, Input-Data and without listeners) 
 
 
 TBD:

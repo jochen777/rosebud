@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import de.rosebud.core.ContentBuilder;
 import de.rosebud.core.Fragment;
 import de.rosebud.core.Loader;
+import de.rosebud.core.RosebudHelper;
 
 @Controller
 public class Rosebud {
@@ -23,6 +24,7 @@ public class Rosebud {
 		Fragment root = loader.load("sample");
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("cont", "Global content");
+		RosebudHelper.getFragmentWithName(root, "central").setData(model);
 		return ContentBuilder.createPage(model, root);
 	}
 

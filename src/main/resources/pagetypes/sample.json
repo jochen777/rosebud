@@ -14,7 +14,8 @@
 	      },
 	      { "template": "lib/main_container", 
 	      	"childs": [
-		      { "template": "_content" },
+		      { "name": "central", 
+		      "template": "_content" },
 		      { "template": "_content", 
 		      	       "data": {
       			"cont":"letzter Content"
