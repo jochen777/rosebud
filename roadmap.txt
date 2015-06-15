@@ -13,7 +13,7 @@ New complex websites in minutes.
 * GIT (github) (OK)
 * Events: Say header to include a new js (create this by a publish&subscribe mechanism) http://tomaszdziurko.pl/2012/01/google-guava-eventbus-easy-elegant-publisher-subscriber-cases/ (OK)
 * Tree creation at runtime (OK)
-* Cleanup template directory
+* Cleanup template directory (OK)
 * Try different template engine (freemarker)
 * Makros (partials)
 * Componenten zusammenlegen (java + template)

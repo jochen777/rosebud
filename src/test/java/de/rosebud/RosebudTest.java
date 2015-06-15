@@ -17,7 +17,7 @@ public class RosebudTest {
 	@Test
 	public void testExampleTree() {
 		Loader loader = new Loader();
-		Fragment root = loader.load("sample_test");
+		Fragment root = loader.load("test/sample_test");
 		Map<String, Object> model = new HashMap<String, Object>();
 
 		String htmlOutput = ContentBuilder.createPage(model, root);
@@ -28,7 +28,7 @@ public class RosebudTest {
 	@Test
 	public void testJSHead() {
 		Loader loader = new Loader();
-		Fragment root = loader.load("sample_js_head");
+		Fragment root = loader.load("test/sample_js_head");
 		Map<String, Object> model = new HashMap<String, Object>();
 
 		String htmlOutput = ContentBuilder.createPage(model, root);
@@ -41,13 +41,13 @@ public class RosebudTest {
 	public void testDynamicPageCreation() {
 
 
-		NormalFragment root = new NormalFragment("unittest");
+		NormalFragment root = new NormalFragment("test/unittest");
 		root.addSingleData("test", "testcontent");
 		
-		NormalFragment child1 = new NormalFragment("unittest_child");
+		NormalFragment child1 = new NormalFragment("test/unittest_child");
 		child1.addSingleData("cont", "childcontent");
 		
-		NormalFragment child2 = new NormalFragment("unittest_child");
+		NormalFragment child2 = new NormalFragment("test/unittest_child");
 		child2.addSingleData("cont", "childcontent");
 		
 		root.addChild(child1);
