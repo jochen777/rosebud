@@ -3,6 +3,8 @@ package de.rosebud.sample;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,12 +22,12 @@ public class Rosebud {
 	Loader loader;
 
 	@RequestMapping("/rosebud")
-	public @ResponseBody String test() {
+	public @ResponseBody String test(HttpServletRequest req) {
 		Fragment root = loader.load("sample");
 		Map<String, Object> model = new HashMap<String, Object>();
 		model.put("cont", "Global content");
 		RosebudHelper.getFragmentWithName(root, "central").setData(model);
-		return ContentBuilder.createPage(model, root);
+		return ContentBuilder.createPage(model, root, req);
 	}
 
 

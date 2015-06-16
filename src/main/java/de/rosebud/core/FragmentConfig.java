@@ -3,6 +3,7 @@ package de.rosebud.core;
 import java.util.List;
 import java.util.Map;
 
+// class that can preconfig a fragment (used for configuring fragments from json)
 public class FragmentConfig {
 
 	String template;
@@ -12,7 +13,7 @@ public class FragmentConfig {
 
 	String beanName;
 	String classname;
-
+	
 	public String getTemplate() {
 		return template;
 	}

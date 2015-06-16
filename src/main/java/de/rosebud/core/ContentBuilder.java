@@ -6,7 +6,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
@@ -16,20 +19,19 @@ import com.samskivert.mustache.Mustache;
 
 // RFE: Perhaps rename this to "rosebud" :)
 public class ContentBuilder {
-	
-	public static String createPage(Map<String, Object> globals, Fragment root) {
+
+	public static String createPage(Map<String, Object> globals, Fragment root,
+			HttpServletRequest req) {
 
 		Mustache.Compiler compiler = prepareTemplateRenderer();
 
-		
-		
-		
-		EventBus eventBus = new EventBus("rosebud-page"+root.getName());
+		EventBus eventBus = new EventBus("rosebud-page" + root.getName());
+		Environment env = new Environment();
+		env.setReq(req);
 		ContentBuilder.registerListeners(root, eventBus);
-		ContentBuilder.contentLoad(globals, root, eventBus);
+		ContentBuilder.contentLoad(globals, root, eventBus, env);
 		return ContentBuilder.getContent(root, compiler);
 	}
-
 
 	private static Mustache.Compiler prepareTemplateRenderer() {
 		Resource resourceDir = new ClassPathResource("/templates/");
@@ -49,16 +51,17 @@ public class ContentBuilder {
 				});
 		return c;
 	}
-	
-	
+
 	// Generates the HTML out of the prepared tree
-	private static String getContent(Fragment fragment, Mustache.Compiler compiler) {
+	private static String getContent(Fragment fragment,
+			Mustache.Compiler compiler) {
 		// TODO: moeglichkeit bilden, dass kinderknoten daten dem
 		// uebergeordneten Inhalt bereitstellen
-		// Vielleicht zwei-pass anbieten?		
-		
+		// Vielleicht zwei-pass anbieten?
+
 		StringBuilder start = new StringBuilder(TemplateRenderer.parseTemplate(
-				fragment.getStartTemplate(), fragment.getData(), fragment, compiler));
+				fragment.getStartTemplate(), fragment.getData(), fragment,
+				compiler));
 		for (Fragment child : fragment.getChilds()) {
 			start.append(ContentBuilder.getContent(child, compiler));
 		}
@@ -66,18 +69,20 @@ public class ContentBuilder {
 		Resource endTemplateResource = new ClassPathResource("/templates/"
 				+ fragment.getStartTemplate() + "_end" + ".html");
 		if (endTemplateResource.exists()) {
-			start.append(TemplateRenderer.parseTemplate(fragment.getStartTemplate() + "_end",
-					fragment.getData(), fragment, compiler));
+			start.append(TemplateRenderer.parseTemplate(
+					fragment.getStartTemplate() + "_end", fragment.getData(),
+					fragment, compiler));
 		}
 		return start.toString();
 	}
-	
+
 	// Prepares the tree
-	private static void contentLoad(Map<String, Object> globals, Fragment fragment, EventBus eventBus) {
+	private static void contentLoad(Map<String, Object> globals, Fragment fragment, EventBus eventBus, Environment env) {
 		// RFE: Do this async?
+		fragment.setEnv(env);
 		fragment.collectData(globals, eventBus);
 		for (Fragment child : fragment.getChilds()) {
-			ContentBuilder.contentLoad(globals, child, eventBus);
+			ContentBuilder.contentLoad(globals, child, eventBus, env);
 		}
 	}
 
@@ -89,5 +94,4 @@ public class ContentBuilder {
 		}
 	}
 
-	
 }

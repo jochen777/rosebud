@@ -14,17 +14,24 @@ New complex websites in minutes.
 * Events: Say header to include a new js (create this by a publish&subscribe mechanism) http://tomaszdziurko.pl/2012/01/google-guava-eventbus-easy-elegant-publisher-subscriber-cases/ (OK)
 * Tree creation at runtime (OK)
 * Cleanup template directory (OK)
-* Try different template engine (freemarker)
-* Makros (partials)
-* Componenten zusammenlegen (java + template)
-* Warning, if global data is overwritten by local (can be switched on or off!) Maybe dev-mode?
-* Maybe template abstraction to get more than one Template engine running? (YAGNI?)
-* Trader, der entscheidet, welches Templates angezogen werden.
+
+
 * Parameterliste für Fragments spezifizieren, damit Fragments nicht das komplette Request Object benötigen - was ist mit Cookies? etc - evtl. als Objekt reinreichen, wenn man unbedingt will!
-* Superior error-display (aufklappbarer Stacktrace...)
+* Test: Componenten zusammenlegen (java + template)
+* Trader, der entscheidet, welches Templates angezogen werden.
 * Fragment-Tree at the bottom
-* build some nice components (menu, header, head, footer, list, teasers, gallery...)
 * debug-mode: Gibt Kommentare über- und unter Templates aus.
+* Javascript als Sprache für Fragments zulassen.
+* caching (by request from fragment-configs)
+* page-structure "inheritance" for cross cutting concerns (global configs: for project, for direcotry, for page. (templatename, fragment-name, data, parameter-handling, caching)
+
+
+
+* Makros (partials)
+* Try different template engine (freemarker)
+* Maybe template abstraction to get more than one Template engine running? (YAGNI?)
+* Superior error-display (aufklappbarer Stacktrace...)
+* build some nice components (menu, header, head, footer, list, teasers, gallery...)
 * Add Bootstrap components
 * Add possibility to change between different template-sets
 * Allow Direct JSON-Defintions in controller
@@ -33,6 +40,7 @@ New complex websites in minutes.
 * provide indenpendance from EventBus (two ways to render: With or without interfragment communication)
 * template-Renderer with interface, even more central! (with help of a bean?, singleton)
 * Caching (Config-Tree; Fragments with exact same Template, Input-Data and without listeners) 
+* Warning, if global data is overwritten by local (can be switched on or off!) Maybe dev-mode?
 
 
 TBD:

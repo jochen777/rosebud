@@ -31,7 +31,7 @@ public class RosebudApplicationTests {
 	public void testExampleTree() {
 		Fragment root = loader.load("sample_test");
 		Map<String, Object> model = new HashMap<String, Object>();
-		String htmlOutput = ContentBuilder.createPage(model, root);
+		String htmlOutput = ContentBuilder.createPage(model, root, null);
 
 		assertEquals("Hello World mytestChild Child1Child Child2", htmlOutput);
 	}

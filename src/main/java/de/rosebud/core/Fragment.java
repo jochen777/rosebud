@@ -16,17 +16,27 @@ import com.google.common.eventbus.EventBus;
  */
 public class Fragment {
 
-	public Fragment(String startTemplate){
+	public Fragment(String startTemplate) {
 		this.startTemplate = startTemplate;
 	}
-	
-	public Fragment () {
-		
+
+	public Fragment() {
+
 	}
-	
+
 	// typical node informations
 	Fragment parent;
 	List<Fragment> childs = new ArrayList<Fragment>();
+	
+	Environment env;
+
+	public Environment getEnv() {
+		return env;
+	}
+
+	public void setEnv(Environment env) {
+		this.env = env;
+	}
 
 	public List<Fragment> getChilds() {
 		return childs;
@@ -54,7 +64,7 @@ public class Fragment {
 	public void setData(Map<String, Object> data) {
 		this.data = data;
 	}
-	
+
 	public void addSingleData(String key, Object data) {
 		this.data.put(key, data);
 	}
@@ -72,16 +82,16 @@ public class Fragment {
 		this.parent = parent;
 	}
 
-	public void collectData(Map<String, Object> additionalData, EventBus eventBus) {
+	public void collectData(Map<String, Object> additionalData,
+			EventBus eventBus) {
 		// collect here your data! -> should be overriden
 	}
 
 	// may be overriden, if needed!
 	public void registerListeners(EventBus eventBus) {
-		
+
 	}
-	
-	
+
 	public Fragment setStartTemplate(String startTemplate) {
 		this.startTemplate = startTemplate;
 		return this;
