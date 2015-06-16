@@ -16,7 +16,7 @@ New complex websites in minutes.
 * Cleanup template directory (OK)
 
 
-* Parameterliste für Fragments spezifizieren, damit Fragments nicht das komplette Request Object benötigen - was ist mit Cookies? etc - evtl. als Objekt reinreichen, wenn man unbedingt will!
+* Access to Request-Params etc. (OK)
 * Test: Componenten zusammenlegen (java + template)
 * Trader, der entscheidet, welches Templates angezogen werden.
 * Fragment-Tree at the bottom
