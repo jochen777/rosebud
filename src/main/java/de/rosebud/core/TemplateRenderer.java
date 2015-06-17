@@ -17,7 +17,7 @@ public class TemplateRenderer {
 	public static String parseTemplate(String file, Map<String, Object> data,
 			 Fragment source, Mustache.Compiler compiler) {
 		try {
-			Resource resource = new ClassPathResource("/templates/" + file
+			Resource resource = new ClassPathResource(file
 					+ ".html");
 			String text = RosebudHelper.readFile(resource.getInputStream());
 			try {

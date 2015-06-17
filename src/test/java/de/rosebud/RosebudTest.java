@@ -53,13 +53,13 @@ public class RosebudTest {
 	@Test
 	public void testDynamicPageCreation() {
 
-		NormalFragment root = new NormalFragment("test/unittest");
+		NormalFragment root = new NormalFragment("/templates/test/unittest");
 		root.addSingleData("test", "testcontent");
 
-		NormalFragment child1 = new NormalFragment("test/unittest_child");
+		NormalFragment child1 = new NormalFragment("/templates/test/unittest_child");
 		child1.addSingleData("cont", "childcontent");
 
-		NormalFragment child2 = new NormalFragment("test/unittest_child");
+		NormalFragment child2 = new NormalFragment("/templates/test/unittest_child");
 		child2.addSingleData("cont", "childcontent");
 
 		root.addChild(child1);

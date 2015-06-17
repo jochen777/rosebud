@@ -9,7 +9,6 @@ import com.google.common.eventbus.EventBus;
 
 import de.rosebud.core.Fragment;
 
-@Service("normal")
 @Scope("prototype")
 public class RequestTestFragment extends Fragment {
 

@@ -23,10 +23,8 @@ public class Rosebud {
 
 	@RequestMapping("/rosebud")
 	public @ResponseBody String test(HttpServletRequest req) {
-		Fragment root = loader.load("sample");
+		Fragment root = loader.load("bootstrap/sample");
 		Map<String, Object> model = new HashMap<String, Object>();
-		model.put("cont", "Global content");
-		RosebudHelper.getFragmentWithName(root, "central").setData(model);
 		return ContentBuilder.createPage(model, root, req);
 	}
 

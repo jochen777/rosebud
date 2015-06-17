@@ -1,20 +1,20 @@
 {
     "classname": "de.rosebud.sample.NormalFragment",
-    "template": "test/unittest",
+    "template": "/templates/test/unittest",
     "data": {
         "test": "mytest"
     },
     "childs": [
         {
             "classname": "de.rosebud.sample.NormalFragment",
-            "template": "test/unittest_child",
+            "template": "/templates/test/unittest_child",
             "data": {
                 "cont": "Child1"
             }
         },
         {
             "classname": "de.rosebud.sample.NormalFragment",
-            "template": "test/unittest_child",
+            "template": "/templates/test/unittest_child",
             "data": {
                 "cont": "Child2"
             }
