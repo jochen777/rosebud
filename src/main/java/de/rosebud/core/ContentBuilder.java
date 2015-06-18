@@ -66,8 +66,8 @@ public class ContentBuilder {
 			start.append(ContentBuilder.getContent(child, compiler));
 		}
 		// End - Template
-		Resource endTemplateResource = new ClassPathResource("/templates/"
-				+ fragment.getStartTemplate() + "_end" + ".html");
+		Resource endTemplateResource = new ClassPathResource(
+				fragment.getStartTemplate() + "_end" + ".html");
 		if (endTemplateResource.exists()) {
 			start.append(TemplateRenderer.parseTemplate(
 					fragment.getStartTemplate() + "_end", fragment.getData(),
