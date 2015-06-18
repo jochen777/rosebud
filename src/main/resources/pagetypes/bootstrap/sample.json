@@ -8,11 +8,14 @@
 	      { "template": "/de/rosebud/sample/frags/navi/navi", 
 	      "data": {
       					"brandname":"Rosebud",
-      					"navi": ["Sport", "Politics", "Art"]
+      					"navi": [{"label":"Sport","link":"/sport"},
+      					 {"label":"Politics","link":"/politics"},
+      					 {"label":"Art","link":"/art"}]
 		    		},
 	      "childs":
       		[
-      			{ "template": "/de/rosebud/sample/frags/keyvisual/keyvisual", 
+      			{ "name": "keyvisual", 
+      			"template": "/de/rosebud/sample/frags/keyvisual/keyvisual", 
 		      	       "data": {
       					"headline":"Rosebud with Bootstrap",
       					"subheadline": "A powerful component framework on top your favourite HTTP Framework. Build for your productivity"

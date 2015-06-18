@@ -55,10 +55,6 @@ public class ContentBuilder {
 	// Generates the HTML out of the prepared tree
 	private static String getContent(Fragment fragment,
 			Mustache.Compiler compiler) {
-		// TODO: moeglichkeit bilden, dass kinderknoten daten dem
-		// uebergeordneten Inhalt bereitstellen
-		// Vielleicht zwei-pass anbieten?
-
 		StringBuilder start = new StringBuilder(TemplateRenderer.parseTemplate(
 				fragment.getStartTemplate(), fragment.getData(), fragment,
 				compiler));
