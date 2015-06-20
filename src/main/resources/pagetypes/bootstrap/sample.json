@@ -5,12 +5,14 @@
     },
     "childs":
       [
-	      { "template": "/de/rosebud/sample/frags/navi/navi", 
+	      {
+	      "classname": "de.rosebud.sample.frags.navi.NaviFragment", 
+	      "template": "/de/rosebud/sample/frags/navi/navi", 
 	      "data": {
       					"brandname":"Rosebud",
-      					"navi": [{"label":"Sport","link":"/sport"},
-      					 {"label":"Politics","link":"/politics"},
-      					 {"label":"Art","link":"/art"}]
+      					"navi": [{"label":"Sport","link":"/sport", "active":false},
+      					 {"label":"Politics","link":"/politics","active":false},
+      					 {"label":"Art","link":"/art","active":false}]
 		    		},
 	      "childs":
       		[
