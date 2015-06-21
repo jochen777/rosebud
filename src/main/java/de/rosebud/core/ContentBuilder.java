@@ -75,8 +75,11 @@ public class ContentBuilder {
 	// Prepares the tree
 	private static void contentLoad(Map<String, Object> globals, Fragment fragment, EventBus eventBus, Environment env) {
 		// RFE: Do this async?
-		fragment.setEnv(env);
-		fragment.collectData(globals, eventBus);
+		List<Behaviour> behaviours = fragment.getBehavoiours();
+		for (Behaviour behaviour : behaviours) {
+			behaviour.setEnv(env);
+			behaviour.collectData(globals, eventBus);
+		}
 		for (Fragment child : fragment.getChilds()) {
 			ContentBuilder.contentLoad(globals, child, eventBus, env);
 		}
@@ -84,7 +87,10 @@ public class ContentBuilder {
 
 	// Prepares the tree
 	private static void registerListeners(Fragment fragment, EventBus eventBus) {
-		fragment.registerListeners(eventBus);
+		List<Behaviour> behaviours = fragment.getBehavoiours();
+		for (Behaviour behaviour : behaviours) {
+			behaviour.registerListeners(eventBus);
+		}
 		for (Fragment child : fragment.getChilds()) {
 			ContentBuilder.registerListeners(child, eventBus);
 		}

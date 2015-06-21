@@ -1,19 +1,18 @@
 {
-    "classname": "de.rosebud.sample.HeadFragment",
+    "behavs": ["de.rosebud.sample.HeadFragment"],
     "template": "/templates/test/head_js",
     "data": {
         "test": "mytest"
     },
     "childs": [
         {
-            "classname": "de.rosebud.sample.NormalFragment",
             "template": "/templates/test/unittest_child",
             "data": {
                 "cont": "Child1"
             }
         },
         {
-            "classname": "de.rosebud.sample.ExampleJSIncluddeFragment",
+            "behavs": ["de.rosebud.sample.ExampleJSIncluddeFragment"],
             "template": "/templates/test/unittest_child",
             "data": {
                 "cont": "Child2"

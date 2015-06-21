@@ -10,10 +10,18 @@ public class FragmentConfig {
 	Map<String, Object> data;
 	List<FragmentConfig> childs;
 	String name;
-
-	String beanName;
-	String classname;
 	
+	List<String> behavs;
+	
+	
+	public List<String> getBehavs() {
+		return behavs;
+	}
+
+	public void setBehavs(List<String> behaves) {
+		this.behavs = behaves;
+	}
+
 	public String getTemplate() {
 		return template;
 	}
@@ -38,21 +46,6 @@ public class FragmentConfig {
 		this.childs = childs;
 	}
 
-	public String getBeanName() {
-		return beanName;
-	}
-
-	public void setBeanName(String beanName) {
-		this.beanName = beanName;
-	}
-
-	public String getClassname() {
-		return classname;
-	}
-
-	public void setClassname(String classname) {
-		this.classname = classname;
-	}
 
 	public String getName() {
 		return name;

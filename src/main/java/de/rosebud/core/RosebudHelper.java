@@ -2,6 +2,7 @@ package de.rosebud.core;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 import org.apache.commons.io.IOUtils;
 
@@ -34,18 +35,21 @@ public class RosebudHelper {
 	}
 
 	// returns the first fragment with beanName. 
-	public static Fragment getFragmentWithType(Fragment rootNode, String type) {
-		if (rootNode.getType().equals(type)) {
-			return rootNode;
+	/*public static Fragment getFirstFragmentWithBehaviour(Fragment rootNode, Class<Behaviour> type) {
+		List<Behaviour> behaviours = rootNode.getBehavoiours();
+		for (Behaviour behaviour : behaviours) {
+			if (behaviour instanceof type) {	// TODO: Does not work this way
+				return rootNode;
+			}
 		}
 		for (Fragment child : rootNode.getChilds()) {
-			Fragment correctFragment = RosebudHelper.getFragmentWithType(child,type);
+			Fragment correctFragment = RosebudHelper.getFirstFragmentWithBehaviour(child,type);
 			if (correctFragment != null) {
 				return correctFragment;
 			}
 		}
 		return null;
-	}
+	}*/
 
 	
 	// reads the file into a string. (do we really need this?!?)

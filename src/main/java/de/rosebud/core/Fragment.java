@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import com.google.common.eventbus.EventBus;
 
@@ -26,16 +27,19 @@ public class Fragment {
 
 	// typical node informations
 	Fragment parent;
+	// RFE: Only create new ArrayList if wanted!
 	List<Fragment> childs = new ArrayList<Fragment>();
 	
-	Environment env;
-
-	public Environment getEnv() {
-		return env;
+	// RFE: Only create new ArrayList if wanted!
+	List<Behaviour> behavoiours = new ArrayList<Behaviour>();
+	
+	public List<Behaviour> getBehavoiours() {
+		return behavoiours;
 	}
-
-	public void setEnv(Environment env) {
-		this.env = env;
+	
+	public void addBehaviour(Behaviour behaviour) {
+		behavoiours.add(behaviour);
+		behaviour.setHostFragment(this);
 	}
 
 	public List<Fragment> getChilds() {
@@ -49,9 +53,6 @@ public class Fragment {
 	// a tree (example: "navi", "head", "breadcrump"..)
 	String name;
 
-	// Type of fragment: Means: Which concrete implementation of fragment object
-	// should be used.
-	String type = "normal"; // normal is the simplest form.
 
 	// data that should be rendered.
 	protected Map<String, Object> data = new HashMap<String, Object>();
@@ -82,15 +83,6 @@ public class Fragment {
 		this.parent = parent;
 	}
 
-	public void collectData(Map<String, Object> additionalData,
-			EventBus eventBus) {
-		// collect here your data! -> should be overriden
-	}
-
-	// may be overriden, if needed!
-	public void registerListeners(EventBus eventBus) {
-
-	}
 
 	public Fragment setStartTemplate(String startTemplate) {
 		this.startTemplate = startTemplate;
@@ -103,14 +95,6 @@ public class Fragment {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
 	}
 
 	public String getStartTemplate() {

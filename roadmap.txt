@@ -19,7 +19,7 @@ New complex websites in minutes.
 * Access to Request-Params etc. (OK)
 * Test: Componenten zusammenlegen (java + template) (OK)
 * crate Navigations-Fragment (OK)
-* Fragment Abstract Class
+* Fragment is just a node! Datacollector is an optional helper of a fragment (OK)
 * Trader, der entscheidet, welches Templates angezogen werden.
 * Fragment-Tree at the bottom
 * debug-mode: Gibt Kommentare über- und unter Templates aus.

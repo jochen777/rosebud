@@ -1,19 +1,17 @@
 {
-    "classname": "de.rosebud.sample.RequestTestFragment",
+    "behavs": ["de.rosebud.sample.RequestTestFragment"],
     "template": "/templates/test/unittest_req",
     "data": {
         "test": "mytest"
     },
     "childs": [
         {
-            "classname": "de.rosebud.sample.NormalFragment",
             "template": "/templates/test/unittest_child",
             "data": {
                 "cont": "Child1"
             }
         },
         {
-            "classname": "de.rosebud.sample.NormalFragment",
             "template": "/templates/test/unittest_child",
             "data": {
                 "cont": "Child2"

@@ -49,37 +49,43 @@ public class Loader {
 	}
 
 	public Fragment loadFragment(FragmentConfig fc) {
-		Fragment fragment = null;
-		// TODO: If both classname and type are given, throw an error!
-		// nothing given? preset type with "normal"
-		if (fc.getBeanName() == null && fc.getClassname() == null) {
-			fc.setBeanName("normal");
-		}
-		// class given? instanciate class
-		if (fc.getClassname() != null) {
-			try {
-				fragment = (Fragment) Class.forName(fc.getClassname())
-						.newInstance();
-			} catch (InstantiationException | IllegalAccessException
-					| ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				throw new RuntimeException(e);
-			}
-		}
-		// type given? load type
-		if (fc.getBeanName() != null) {
-			try {
-				fragment = (Fragment) appContext.getBean(fc.getBeanName());
-			} catch (Exception e) {
-				throw new RuntimeException(e);
-			}
-		}
+		Fragment fragment = new Fragment();
 		fragment.setStartTemplate(fc.getTemplate());
 		fragment.setName(fc.getName());
-		fragment.setType(fc.getBeanName());
 
 		fragment.setData(fc.getData());
 
+		if (fc.getBehavs() != null){
+			// load behaviour
+			for (String behavName : fc.getBehavs()) {
+				// convention: If the behav name starts with "bean:" it will load it out of a spring context
+				if (behavName.startsWith("bean:")) {
+					try {
+						Behaviour behav = (Behaviour) appContext.getBean(behavName);
+						fragment.addBehaviour(behav);
+					} catch (Exception e) {
+						throw new RuntimeException(e);
+					}
+				} else {
+					// class given? instanciate class
+					try {
+						Behaviour behav = (Behaviour)  Class.forName(behavName)
+								.newInstance();
+						fragment.addBehaviour(behav);
+					} catch (InstantiationException | IllegalAccessException
+							| ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						throw new RuntimeException(e);
+					}
+					
+				}
+				
+				
+			}
+			// type given? load type
+		}
+
+		
 		if (fc.getChilds() != null) {
 			for (FragmentConfig fcChild : fc.getChilds()) {
 				fragment.addChild(loadFragment(fcChild));

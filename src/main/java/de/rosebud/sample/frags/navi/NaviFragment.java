@@ -5,17 +5,11 @@ import java.util.Map;
 
 import com.google.common.eventbus.EventBus;
 
+import de.rosebud.core.Behaviour;
+import de.rosebud.core.DefaultBehaviour;
 import de.rosebud.core.Fragment;
 
-public class NaviFragment extends Fragment{
-
-	public NaviFragment() {
-		super();
-	}
-
-	public NaviFragment(String startTemplate) {
-		super(startTemplate);
-	}
+public class NaviFragment extends DefaultBehaviour implements Behaviour{
 
 	@Override
 	public void collectData(Map<String, Object> additionalData,
@@ -23,7 +17,7 @@ public class NaviFragment extends Fragment{
 		// check current path
 		String currentPath = this.getEnv().getReq().getRequestURI(); 
 		// add to data-structure "active" element
-		List<Map<String, Object>> navi = (List<Map<String, Object>>)data.get("navi");
+		List<Map<String, Object>> navi = (List<Map<String, Object>>)this.getHostFragment().getData().get("navi");
 		Map<String, Object> currentNavi = null;
 		for (Map<String, Object> singleNavi : navi) {
 			if (singleNavi.get("link").equals(currentPath)) {

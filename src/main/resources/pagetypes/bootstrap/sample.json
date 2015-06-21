@@ -6,7 +6,7 @@
     "childs":
       [
 	      {
-	      "classname": "de.rosebud.sample.frags.navi.NaviFragment", 
+	      "behavs": ["de.rosebud.sample.frags.navi.NaviFragment"],
 	      "template": "/de/rosebud/sample/frags/navi/navi", 
 	      "data": {
       					"brandname":"Rosebud",
