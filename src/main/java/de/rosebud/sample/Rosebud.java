@@ -23,12 +23,12 @@ public class Rosebud {
 
 	@RequestMapping("/rosebud")
 	public @ResponseBody String test(HttpServletRequest req) {
-		return ContentBuilder.run("bootstrap/sample", loader, req);
+		return ContentBuilder.run("/pagetypes/bootstrap/sample", loader, req);
 	}
 
 	@RequestMapping("/sport")
 	public @ResponseBody String sport(HttpServletRequest req) {
-		Fragment root = loader.load("bootstrap/sample");
+		Fragment root = loader.load("/pagetypes/bootstrap/sample");
 		RosebudHelper.getFragmentWithName(root, "keyvisual").addSingleData(
 				"headline", "Die Sportrubrik");
 		return ContentBuilder.createPage(null, root, req);
@@ -36,7 +36,7 @@ public class Rosebud {
 
 	@RequestMapping("/art")
 	public @ResponseBody String art(HttpServletRequest req) {
-		Fragment root = loader.load("bootstrap/sample");
+		Fragment root = loader.load("/pagetypes/bootstrap/sample");
 		RosebudHelper.getFragmentWithName(root, "keyvisual").addSingleData(
 				"headline", "Die Kunstrubrik");
 		return ContentBuilder.createPage(null, root, req);

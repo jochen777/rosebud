@@ -5,7 +5,7 @@
     },
     "childs": [
         {
-            "ref": "test/sample_test"
+            "ref": "/pagetypes/test/sample_test"
         }
     ]
 }

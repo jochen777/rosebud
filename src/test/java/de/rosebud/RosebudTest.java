@@ -17,7 +17,7 @@ public class RosebudTest{
 	@Test
 	public void testExampleTree() {
 		Loader loader = new Loader();
-		Fragment root = loader.load("test/sample_test");
+		Fragment root = loader.load("/pagetypes/test/sample_test");
 		Map<String, Object> model = new HashMap<String, Object>();
 
 		MockHttpServletRequest mockedRequest = new MockHttpServletRequest();
@@ -32,7 +32,7 @@ public class RosebudTest{
 	@Test
 	public void testJSHead() {
 		Loader loader = new Loader();
-		Fragment root = loader.load("test/sample_js_head");
+		Fragment root = loader.load("/pagetypes/test/sample_js_head");
 		Map<String, Object> model = new HashMap<String, Object>();
 
 		MockHttpServletRequest mockedRequest = new MockHttpServletRequest();
@@ -77,7 +77,7 @@ public class RosebudTest{
 	public void testRequestParams() {
 
 		Loader loader = new Loader();
-		Fragment root = loader.load("test/sample_test_request");
+		Fragment root = loader.load("/pagetypes/test/sample_test_request");
 		Map<String, Object> model = new HashMap<String, Object>();
 
 		MockHttpServletRequest mockedRequest = new MockHttpServletRequest();

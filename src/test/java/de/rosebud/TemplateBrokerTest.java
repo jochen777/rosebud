@@ -20,7 +20,7 @@ public class TemplateBrokerTest {
 	@Test
 	public void testMobileTree() {
 		Loader loader = new Loader();
-		Fragment root = loader.load("test/sample_test");
+		Fragment root = loader.load("/pagetypes/test/sample_test");
 
 		MockHttpServletRequest mockedRequest = new MockHttpServletRequest();
 		mockedRequest.setRequestURI("test00");

@@ -30,7 +30,7 @@ public class RosebudApplicationTests {
 	
 	@Test
 	public void testExampleTree() {
-		Fragment root = loader.load("test/sample_test");
+		Fragment root = loader.load("/pagetypes/test/sample_test");
 		Map<String, Object> model = new HashMap<String, Object>();
 		MockHttpServletRequest mockedRequest = new MockHttpServletRequest();
 		mockedRequest.setRequestURI("test00");

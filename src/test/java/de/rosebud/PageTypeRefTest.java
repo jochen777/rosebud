@@ -21,7 +21,7 @@ public class PageTypeRefTest {
 	public void testPageTypeRef() {
 		// tests, if "ref" will load a foreign template tree
 		Loader loader = new Loader();
-		Fragment root = loader.load("test/sample_test_ref");
+		Fragment root = loader.load("/pagetypes/test/sample_test_ref");
 
 		MockHttpServletRequest mockedRequest = new MockHttpServletRequest();
 		mockedRequest.setRequestURI("test00");

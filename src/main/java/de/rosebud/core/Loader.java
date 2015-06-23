@@ -31,7 +31,7 @@ public class Loader {
 	public Fragment load(String config) {
 		// load json
 		try {
-			String url = "/pagetypes/" + config + ".json";
+			String url =  config + ".json";
 			// http://stackoverflow.com/questions/22096983/spring-mvc-read-file-from-src-main-resources
 			Resource resource = new ClassPathResource(url);
 			// http://stackoverflow.com/questions/19697555/simple-spring-code-to-parse-json
