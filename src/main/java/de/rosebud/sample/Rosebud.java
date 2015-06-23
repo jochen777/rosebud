@@ -24,17 +24,15 @@ public class Rosebud {
 	@RequestMapping("/rosebud")
 	public @ResponseBody String test(HttpServletRequest req) {
 		Fragment root = loader.load("bootstrap/sample");
-		Map<String, Object> model = new HashMap<String, Object>();
-		return ContentBuilder.createPage(model, root, req);
+		return ContentBuilder.createPage(null, root, req);
 	}
 
 	@RequestMapping("/sport")
 	public @ResponseBody String sport(HttpServletRequest req) {
 		Fragment root = loader.load("bootstrap/sample");
-		Map<String, Object> model = new HashMap<String, Object>();
 		RosebudHelper.getFragmentWithName(root, "keyvisual").addSingleData(
 				"headline", "Die Sportrubrik");
-		return ContentBuilder.createPage(model, root, req);
+		return ContentBuilder.createPage(null, root, req);
 	}
 
 	@RequestMapping("/art")

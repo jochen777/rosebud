@@ -14,7 +14,6 @@ import org.springframework.mock.web.MockHttpServletRequest;
 import de.rosebud.core.ContentBuilder;
 import de.rosebud.core.Fragment;
 import de.rosebud.core.Loader;
-import de.rosebud.sample.NormalFragment;
 
 public class RosebudTest {
 
@@ -53,13 +52,13 @@ public class RosebudTest {
 	@Test
 	public void testDynamicPageCreation() {
 
-		NormalFragment root = new NormalFragment("/templates/test/unittest");
+		Fragment root = new Fragment("/templates/test/unittest");
 		root.addSingleData("test", "testcontent");
 
-		NormalFragment child1 = new NormalFragment("/templates/test/unittest_child");
+		Fragment child1 = new Fragment("/templates/test/unittest_child");
 		child1.addSingleData("cont", "childcontent");
 
-		NormalFragment child2 = new NormalFragment("/templates/test/unittest_child");
+		Fragment child2 = new Fragment("/templates/test/unittest_child");
 		child2.addSingleData("cont", "childcontent");
 
 		root.addChild(child1);

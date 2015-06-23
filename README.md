@@ -1,5 +1,5 @@
 # rosebud
-The brand new, pragmatic, compact, fast and component based webframework to generate websites.
+The new, pragmatic, compact, fast and component based webframework to generate websites.
 
 
 You love your java http-webframework, but disappointed about low construction capabilities?
