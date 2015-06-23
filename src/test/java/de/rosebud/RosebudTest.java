@@ -6,14 +6,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.Test;
-import org.mockito.Mockito;
 import org.springframework.mock.web.MockHttpServletRequest;
 
 import de.rosebud.core.ContentBuilder;
 import de.rosebud.core.Fragment;
 import de.rosebud.core.Loader;
 
-public class RosebudTest extends Mockito{
+public class RosebudTest{
 
 	@Test
 	public void testExampleTree() {

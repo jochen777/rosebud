@@ -20,15 +20,15 @@ New complex websites in minutes.
 * Test: Componenten zusammenlegen (java + template) (OK)
 * crate Navigations-Fragment (OK)
 * Fragment is just a node! Datacollector is an optional helper of a fragment (OK)
-* caching (by request from fragment-configs)
-* Trader, der entscheidet, welches Templates angezogen werden.
+* caching (by request from fragment-configs) (OK - but work to do)
+* Trader, der entscheidet, welches Templates angezogen werden. (OK)
 * Cewl: Fragment-Defintion can only hold a reference to another "page" or fragment defintion (ie: "ref": "/sample/frags/complex_frag")
 * Javascript als Sprache für Fragments zulassen.
 * page-structure "inheritance" for cross cutting concerns (global configs: for project, for direcotry, for page. (templatename, fragment-name, data, parameter-handling, caching)
 * Fragment-Tree at the bottom
 * debug-mode: Gibt Kommentare über- und unter Templates aus.
 * create a page-wide logging-buffer. Can be outputted under page in browser.
- 
+* create more clever caching
 
 
 

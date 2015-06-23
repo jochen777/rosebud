@@ -18,7 +18,7 @@ public class TemplateRenderer {
 			 Fragment source, Mustache.Compiler compiler) {
 		try {
 			Resource resource = new ClassPathResource(file
-					+ ".html");
+					);
 			String text = RosebudHelper.readFile(resource.getInputStream());
 			try {
 				return compiler.compile(text).execute(data);

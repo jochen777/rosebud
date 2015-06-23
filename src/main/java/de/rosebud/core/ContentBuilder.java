@@ -33,16 +33,25 @@ public class ContentBuilder {
 	}
 
 	public static String createPage(Map<String, Object> globals, Fragment root,
-			HttpServletRequest req) {
+			HttpServletRequest req, TemplateBroker templateBroker) {
 		Mustache.Compiler compiler = prepareTemplateRenderer();
-
+		
 		EventBus eventBus = new EventBus("rosebud-page" + root.getName());
 		Environment env = new Environment();
 		env.setReq(req);
 		ContentBuilder.registerListeners(root, eventBus);
 		ContentBuilder.contentLoad(globals, root, eventBus, env);
-		return ContentBuilder.getContent(root, compiler);
+		return ContentBuilder.getContent(root, compiler, templateBroker);
 	}
+	
+	
+	public static String createPage(Map<String, Object> globals, Fragment root,
+			HttpServletRequest req) {
+		TemplateBroker templateBroker = new TemplateBroker();
+		return ContentBuilder.createPage(globals, root, req, templateBroker);
+	}
+	
+	
 
 	private static Mustache.Compiler prepareTemplateRenderer() {
 		Resource resourceDir = new ClassPathResource("/templates/");
@@ -65,19 +74,18 @@ public class ContentBuilder {
 
 	// Generates the HTML out of the prepared tree
 	private static String getContent(Fragment fragment,
-			Mustache.Compiler compiler) {
+			Mustache.Compiler compiler, TemplateBroker templateBroker) {
 		StringBuilder start = new StringBuilder(TemplateRenderer.parseTemplate(
-				fragment.getStartTemplate(), fragment.getData(), fragment,
+				templateBroker.getTemplate(fragment.getStartTemplate()) + ".html", fragment.getData(), fragment,
 				compiler));
 		for (Fragment child : fragment.getChilds()) {
-			start.append(ContentBuilder.getContent(child, compiler));
+			start.append(ContentBuilder.getContent(child, compiler, templateBroker));
 		}
 		// End - Template
-		Resource endTemplateResource = new ClassPathResource(
-				fragment.getStartTemplate() + "_end" + ".html");
+		String endTemplateName = templateBroker.getTemplate(fragment.getStartTemplate() + "_end") + ".html"; 
+		Resource endTemplateResource = new ClassPathResource(endTemplateName);
 		if (endTemplateResource.exists()) {
-			start.append(TemplateRenderer.parseTemplate(
-					fragment.getStartTemplate() + "_end", fragment.getData(),
+			start.append(TemplateRenderer.parseTemplate(endTemplateName, fragment.getData(),
 					fragment, compiler));
 		}
 		return start.toString();
