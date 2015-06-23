@@ -13,7 +13,17 @@ public class FragmentConfig {
 	
 	List<String> behavs;
 	
+	String cache;
 	
+	
+	public String getCache() {
+		return cache;
+	}
+
+	public void setCache(String cache) {
+		this.cache = cache;
+	}
+
 	public List<String> getBehavs() {
 		return behavs;
 	}
