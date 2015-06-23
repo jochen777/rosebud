@@ -49,6 +49,10 @@ public class Loader {
 	}
 
 	public Fragment loadFragment(FragmentConfig fc) {
+		if (fc.getRef() != null) {
+			// load "subpage" if ref is set
+			return this.load(fc.getRef());
+		}
 		Fragment fragment = new Fragment();
 		fragment.setStartTemplate(fc.getTemplate());
 		fragment.setName(fc.getName());

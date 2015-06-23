@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -29,9 +30,11 @@ public class RosebudApplicationTests {
 	
 	@Test
 	public void testExampleTree() {
-		Fragment root = loader.load("sample_test");
+		Fragment root = loader.load("test/sample_test");
 		Map<String, Object> model = new HashMap<String, Object>();
-		String htmlOutput = ContentBuilder.createPage(model, root, null);
+		MockHttpServletRequest mockedRequest = new MockHttpServletRequest();
+		mockedRequest.setRequestURI("test00");
+		String htmlOutput = ContentBuilder.createPage(model, root, mockedRequest);
 
 		assertEquals("Hello World mytestChild Child1Child Child2", htmlOutput);
 	}

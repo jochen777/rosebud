@@ -1,0 +1,11 @@
+{
+    "template": "/templates/test/unittest",
+    "data": {
+        "test": "Parent"
+    },
+    "childs": [
+        {
+            "ref": "test/sample_test"
+        }
+    ]
+}

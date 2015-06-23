@@ -16,6 +16,16 @@ public class FragmentConfig {
 	String cache;
 	
 	
+	String ref;
+	
+	public String getRef() {
+		return ref;
+	}
+
+	public void setRef(String ref) {
+		this.ref = ref;
+	}
+
 	public String getCache() {
 		return cache;
 	}
