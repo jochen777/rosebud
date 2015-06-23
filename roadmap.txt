@@ -22,7 +22,7 @@ New complex websites in minutes.
 * Fragment is just a node! Datacollector is an optional helper of a fragment (OK)
 * caching (by request from fragment-configs) (OK - but work to do)
 * Trader, der entscheidet, welches Templates angezogen werden. (OK)
-* Cewl: Fragment-Defintion can only hold a reference to another "page" or fragment defintion (ie: "ref": "/sample/frags/complex_frag")
+* Cewl: Fragment-Defintion can only hold a reference to another "page" or fragment defintion (ie: "ref": "/sample/frags/complex_frag") (OK)
 * Javascript als Sprache für Fragments zulassen.
 * page-structure "inheritance" for cross cutting concerns (global configs: for project, for direcotry, for page. (templatename, fragment-name, data, parameter-handling, caching)
 * Fragment-Tree at the bottom

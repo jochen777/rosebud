@@ -74,12 +74,21 @@ public class Loader {
 				// convention: If the behav name starts with "bean:" it will load it out of a spring context
 				if (behavName.startsWith("bean:")) {
 					try {
-						Behaviour behav = (Behaviour) appContext.getBean(behavName);
+						Behaviour behav = (Behaviour) appContext.getBean(behavName.replaceAll("bean:", ""));
 						fragment.addBehaviour(behav);
 					} catch (Exception e) {
 						throw new RuntimeException(e);
 					}
-				} else {
+				}else if (behavName.startsWith("javascript:")) {
+					try {
+						JSBehaviour behav = new JSBehaviour();
+						behav.setJsFile(behavName.replaceAll("javascript:", ""));
+						fragment.addBehaviour(behav);
+					} catch (Exception e) {
+						throw new RuntimeException(e);
+					}
+				}
+				else {
 					// class given? instanciate class
 					try {
 						Behaviour behav = (Behaviour)  Class.forName(behavName)

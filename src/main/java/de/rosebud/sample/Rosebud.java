@@ -3,6 +3,9 @@ package de.rosebud.sample;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +43,18 @@ public class Rosebud {
 		RosebudHelper.getFragmentWithName(root, "keyvisual").addSingleData(
 				"headline", "Die Kunstrubrik");
 		return ContentBuilder.createPage(null, root, req);
+	}
+	
+	@RequestMapping("/test")
+	public @ResponseBody String testJS() {
+		ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
+		try {
+			engine.eval("print('Hello World!');");
+		} catch (ScriptException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "OK";
 	}
 
 
