@@ -23,8 +23,7 @@ public class Rosebud {
 
 	@RequestMapping("/rosebud")
 	public @ResponseBody String test(HttpServletRequest req) {
-		Fragment root = loader.load("bootstrap/sample");
-		return ContentBuilder.createPage(null, root, req);
+		return ContentBuilder.run("bootstrap/sample", loader, req);
 	}
 
 	@RequestMapping("/sport")

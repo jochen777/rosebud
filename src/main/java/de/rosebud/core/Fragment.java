@@ -24,6 +24,16 @@ public class Fragment {
 	public Fragment() {
 
 	}
+	
+	CacheType cacheType = null;
+
+	public CacheType getCacheType() {
+		return cacheType;
+	}
+
+	public void setCacheType(CacheType cacheType) {
+		this.cacheType = cacheType;
+	}
 
 	// typical node informations
 	Fragment parent;

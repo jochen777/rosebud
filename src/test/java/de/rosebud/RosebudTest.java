@@ -5,8 +5,6 @@ import static org.junit.Assert.assertEquals;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpServletRequest;
-
 import org.junit.Test;
 import org.mockito.Mockito;
 import org.springframework.mock.web.MockHttpServletRequest;
@@ -15,7 +13,7 @@ import de.rosebud.core.ContentBuilder;
 import de.rosebud.core.Fragment;
 import de.rosebud.core.Loader;
 
-public class RosebudTest {
+public class RosebudTest extends Mockito{
 
 	@Test
 	public void testExampleTree() {
@@ -23,8 +21,8 @@ public class RosebudTest {
 		Fragment root = loader.load("test/sample_test");
 		Map<String, Object> model = new HashMap<String, Object>();
 
-		HttpServletRequest mockedRequest = Mockito
-				.mock(HttpServletRequest.class);
+		MockHttpServletRequest mockedRequest = new MockHttpServletRequest();
+		mockedRequest.setRequestURI("test00");
 
 		String htmlOutput = ContentBuilder.createPage(model, root,
 				mockedRequest);
@@ -38,8 +36,9 @@ public class RosebudTest {
 		Fragment root = loader.load("test/sample_js_head");
 		Map<String, Object> model = new HashMap<String, Object>();
 
-		HttpServletRequest mockedRequest = Mockito
-				.mock(HttpServletRequest.class);
+		MockHttpServletRequest mockedRequest = new MockHttpServletRequest();
+		mockedRequest.setRequestURI("test0");
+
 
 		String htmlOutput = ContentBuilder.createPage(model, root,
 				mockedRequest);
@@ -64,8 +63,8 @@ public class RosebudTest {
 		root.addChild(child1);
 		root.addChild(child2);
 
-		HttpServletRequest mockedRequest = Mockito
-				.mock(HttpServletRequest.class);
+		MockHttpServletRequest mockedRequest = new MockHttpServletRequest();
+		mockedRequest.setRequestURI("test1");
 
 		String htmlOutput = ContentBuilder
 				.createPage(null, root, mockedRequest);
@@ -83,6 +82,8 @@ public class RosebudTest {
 		Map<String, Object> model = new HashMap<String, Object>();
 
 		MockHttpServletRequest mockedRequest = new MockHttpServletRequest();
+		mockedRequest.setRequestURI("test2");
+
 		String name = "Jochen Pier";
 		mockedRequest.setParameter("name", name);
 		String htmlOutput = ContentBuilder.createPage(model, root,

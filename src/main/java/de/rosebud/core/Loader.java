@@ -54,6 +54,15 @@ public class Loader {
 		fragment.setName(fc.getName());
 
 		fragment.setData(fc.getData());
+		if (fc.getCache() != null) {
+			if (fc.getCache().equals("normal")) {
+				fragment.setCacheType(CacheType.normal);
+			} else {
+				// TBE: implement correct logging system
+				System.err.println("wrong caching!");
+			}
+			
+		}
 
 		if (fc.getBehavs() != null){
 			// load behaviour
@@ -82,7 +91,6 @@ public class Loader {
 				
 				
 			}
-			// type given? load type
 		}
 
 		

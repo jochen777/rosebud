@@ -20,9 +20,20 @@ import com.samskivert.mustache.Mustache;
 // RFE: Perhaps rename this to "rosebud" :)
 public class ContentBuilder {
 
+	public static String run(String pageName, Loader loader,
+			HttpServletRequest req) {
+		String cachedVersion = CacheProvider.getInstance().get(
+				req.getRequestURI());
+		if (cachedVersion == null) {
+			Fragment root = loader.load(pageName);
+			cachedVersion = ContentBuilder.createPage(null, root, req);
+			CacheProvider.getInstance().put(req.getRequestURI(), cachedVersion);
+		}
+		return cachedVersion;
+	}
+
 	public static String createPage(Map<String, Object> globals, Fragment root,
 			HttpServletRequest req) {
-
 		Mustache.Compiler compiler = prepareTemplateRenderer();
 
 		EventBus eventBus = new EventBus("rosebud-page" + root.getName());
@@ -73,7 +84,8 @@ public class ContentBuilder {
 	}
 
 	// Prepares the tree
-	private static void contentLoad(Map<String, Object> globals, Fragment fragment, EventBus eventBus, Environment env) {
+	private static void contentLoad(Map<String, Object> globals,
+			Fragment fragment, EventBus eventBus, Environment env) {
 		// RFE: Do this async?
 		List<Behaviour> behaviours = fragment.getBehavoiours();
 		for (Behaviour behaviour : behaviours) {

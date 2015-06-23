@@ -27,6 +27,7 @@ New complex websites in minutes.
 * page-structure "inheritance" for cross cutting concerns (global configs: for project, for direcotry, for page. (templatename, fragment-name, data, parameter-handling, caching)
 * Fragment-Tree at the bottom
 * debug-mode: Gibt Kommentare über- und unter Templates aus.
+* create a page-wide logging-buffer. Can be outputted under page in browser.
  
 
 
