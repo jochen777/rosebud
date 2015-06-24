@@ -31,7 +31,7 @@ New complex websites in minutes.
 * create more clever caching
 
 
-
+* Fragment ref not perfect: Something like wrapper would be a nice addition
 * Makros (partials)
 * Try different template engine (freemarker)
 * Maybe template abstraction to get more than one Template engine running? (YAGNI?)
