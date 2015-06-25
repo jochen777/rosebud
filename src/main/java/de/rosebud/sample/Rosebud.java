@@ -46,15 +46,9 @@ public class Rosebud {
 	}
 	
 	@RequestMapping("/test")
-	public @ResponseBody String testJS() {
-		ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
-		try {
-			engine.eval("print('Hello World!');");
-		} catch (ScriptException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return "OK";
+	public @ResponseBody String testJS(HttpServletRequest req) {
+		Fragment root = loader.load("/pagetypes/test/sample_js");
+		return ContentBuilder.createPage(null, root, req);
 	}
 
 
