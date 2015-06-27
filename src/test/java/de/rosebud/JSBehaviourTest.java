@@ -28,7 +28,7 @@ public class JSBehaviourTest {
 		String htmlOutput = ContentBuilder.createPage(null, root,
 				mockedRequest);
 
-		assertEquals("Hello World mytestChild Child1Child Child2", htmlOutput);
+		assertEquals("Hello World Javascript output!Child Child1Child Child2", htmlOutput);
 	}
 
 

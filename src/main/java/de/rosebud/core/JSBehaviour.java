@@ -40,7 +40,7 @@ public class JSBehaviour extends DefaultBehaviour implements Behaviour{
 			engine.eval(new FileReader(resource.getFile()));
 			Invocable invocable = (Invocable) engine;
 
-			Object result = invocable.invokeFunction("collectData", additionalData, eventBus);
+			Object result = invocable.invokeFunction("collectData", this.getHostFragment().getData(), eventBus, env);
 		} catch (ScriptException | IOException | NoSuchMethodException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

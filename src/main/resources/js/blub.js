@@ -3,8 +3,9 @@ function setEnv(env) {
 }
 	
 function collectData(additionalData,
-			eventBus) {
-	print ("I was called with the eventBus: " + eventBus);
+			eventBus, env) {
+	additionalData.put("test", "Javascript output!");
+	
 }
 	
 function registerListeners(eventBus) {}
