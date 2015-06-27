@@ -97,8 +97,7 @@ public class ContentBuilder {
 		// RFE: Do this async?
 		List<Behaviour> behaviours = fragment.getBehavoiours();
 		for (Behaviour behaviour : behaviours) {
-			behaviour.setEnv(env);
-			behaviour.collectData(globals, eventBus);
+			behaviour.collectData(globals, eventBus, env);
 		}
 		for (Fragment child : fragment.getChilds()) {
 			ContentBuilder.contentLoad(globals, child, eventBus, env);

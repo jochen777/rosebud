@@ -9,6 +9,7 @@ import com.google.common.eventbus.Subscribe;
 
 import de.rosebud.core.Behaviour;
 import de.rosebud.core.DefaultBehaviour;
+import de.rosebud.core.Environment;
 import de.rosebud.core.Fragment;
 import de.rosebud.sample.events.AddResourceToHeaderEvent;
 
@@ -34,7 +35,7 @@ public class HeadFragment extends DefaultBehaviour implements Behaviour {
 
 	@Override
 	public void collectData(Map<String, Object> additionalData,
-			EventBus eventBus) {
+			EventBus eventBus , Environment env) {
 		// nothing to do here!
 		
 	}

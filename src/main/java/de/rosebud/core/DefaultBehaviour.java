@@ -4,18 +4,7 @@ import com.google.common.eventbus.EventBus;
 
 public abstract class DefaultBehaviour implements Behaviour {
 	
-	Environment env;
 	Fragment hostFragment;
-
-	@Override
-	public Environment getEnv() {
-		return env;
-	}
-
-	@Override
-	public void setEnv(Environment env) {
-		this.env = env;
-	}
 
 	public Fragment getHostFragment(){
 		return hostFragment;

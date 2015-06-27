@@ -1,10 +1,10 @@
 package de.rosebud.core;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Map;
 
+import javax.script.Invocable;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
@@ -32,19 +32,21 @@ public class JSBehaviour extends DefaultBehaviour implements Behaviour{
 
 	@Override
 	public void collectData(Map<String, Object> additionalData,
-			EventBus eventBus) {
+			EventBus eventBus, Environment env) {
 		// RFE: Request only one Engine for the server!
 		ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
 		try {
 			Resource resource = new ClassPathResource(jsFile);
 			engine.eval(new FileReader(resource.getFile()));
-		} catch (ScriptException | IOException e) {
+			Invocable invocable = (Invocable) engine;
+
+			Object result = invocable.invokeFunction("collectData", additionalData, eventBus);
+		} catch (ScriptException | IOException | NoSuchMethodException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
-	
 	
 
 }
