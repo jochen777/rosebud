@@ -4,7 +4,9 @@ function setEnv(env) {
 	
 function collectData(additionalData,
 			eventBus, env) {
+	
 	additionalData.put("test", "Javascript output!");
+	
 	
 }
 	
