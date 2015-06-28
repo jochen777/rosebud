@@ -1,12 +1,7 @@
-function setEnv(env) {
-	print ("set env!");
-}
-	
 function collectData(additionalData,
 			eventBus, env) {
 	
 	additionalData.put("test", "Javascript output!");
-	
 	
 }
 	

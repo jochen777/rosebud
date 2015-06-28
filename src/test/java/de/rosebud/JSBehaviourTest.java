@@ -24,9 +24,8 @@ public class JSBehaviourTest {
 
 		MockHttpServletRequest mockedRequest = new MockHttpServletRequest();
 		mockedRequest.setRequestURI("test00");
-
-		String htmlOutput = ContentBuilder.createPage(null, root,
-				mockedRequest);
+		ContentBuilder cb = ContentBuilder.getSimpleContentBuilder(mockedRequest);
+		String htmlOutput = cb.createPage(null, root);
 
 		assertEquals("Hello World Javascript output!Child Child1Child Child2", htmlOutput);
 	}

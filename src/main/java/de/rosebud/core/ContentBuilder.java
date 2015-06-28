@@ -14,41 +14,69 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 
+import scala.annotation.meta.getter;
+
 import com.google.common.eventbus.EventBus;
 import com.samskivert.mustache.Mustache;
 
 // RFE: Perhaps rename this to "rosebud" :)
 public class ContentBuilder {
+	
+	Loader loader;
+	Configuration configuration;
+	Environment env;
+	TemplateBroker templateBroker;
+	
+	public void setTemplateBroker(TemplateBroker templateBroker) {
+		this.templateBroker = templateBroker;
+	}
 
-	public static String run(String pageName, Loader loader,
-			HttpServletRequest req) {
+	public void setLoader(Loader loader) {
+		this.loader = loader;
+	}
+
+	public void setConfiguration(Configuration configuration) {
+		this.configuration = configuration;
+	}
+
+	public void setEnv(Environment env) {
+		this.env = env;
+	}
+
+	public static ContentBuilder getSimpleContentBuilder(HttpServletRequest req) {
+		ContentBuilder cb = new ContentBuilder();
+		cb.loader = new Loader();
+		cb.configuration = new Configuration();
+		cb.env = new Environment();
+		cb.env.setReq(req);
+		return cb;
+	}
+
+	public String run(String pageName) {
 		String cachedVersion = CacheProvider.getInstance().get(
-				req.getRequestURI());
+				this.env.req.getRequestURI());
 		if (cachedVersion == null) {
 			Fragment root = loader.load(pageName);
-			cachedVersion = ContentBuilder.createPage(null, root, req);
-			CacheProvider.getInstance().put(req.getRequestURI(), cachedVersion);
+			cachedVersion = createPage(null, root);
+			CacheProvider.getInstance().put(this.env.req.getRequestURI(), cachedVersion);
 		}
 		return cachedVersion;
 	}
 
-	public static String createPage(Map<String, Object> globals, Fragment root,
-			HttpServletRequest req, TemplateBroker templateBroker) {
+	public String createPage(Map<String, Object> globals, Fragment root,
+			TemplateBroker templateBroker) {
 		Mustache.Compiler compiler = prepareTemplateRenderer();
 		
 		EventBus eventBus = new EventBus("rosebud-page" + root.getName());
-		Environment env = new Environment();
-		env.setReq(req);
 		ContentBuilder.registerListeners(root, eventBus);
 		ContentBuilder.contentLoad(globals, root, eventBus, env);
 		return ContentBuilder.getContent(root, compiler, templateBroker);
 	}
 	
 	
-	public static String createPage(Map<String, Object> globals, Fragment root,
-			HttpServletRequest req) {
+	public String createPage(Map<String, Object> globals, Fragment root) {
 		TemplateBroker templateBroker = new TemplateBroker();
-		return ContentBuilder.createPage(globals, root, req, templateBroker);
+		return createPage(globals, root, templateBroker);
 	}
 	
 	

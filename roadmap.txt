@@ -23,10 +23,11 @@ New complex websites in minutes.
 * caching (by request from fragment-configs) (OK - but work to do)
 * Trader, der entscheidet, welches Templates angezogen werden. (OK)
 * Cewl: Fragment-Defintion can only hold a reference to another "page" or fragment defintion (ie: "ref": "/sample/frags/complex_frag") (OK)
-* Javascript als Sprache für Fragments zulassen.
-* page-structure "inheritance" for cross cutting concerns (global configs: for project, for direcotry, for page. (templatename, fragment-name, data, parameter-handling, caching)
-* Fragment-Tree at the bottom
+* Javascript als Sprache für Fragments zulassen. (OK! - so nice!) 
+* better config with setter-methods (will be nice with DI)
 * debug-mode: Gibt Kommentare über- und unter Templates aus.
+* page-structure "inheritance" for cross cutting concerns (global configs: for project, for direcotry, for page. (templatename, behavirours, data, caching)
+* Fragment-Tree at the bottom
 * create a page-wide logging-buffer. Can be outputted under page in browser.
 * create more clever caching
 

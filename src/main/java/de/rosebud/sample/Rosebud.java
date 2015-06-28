@@ -26,29 +26,33 @@ public class Rosebud {
 
 	@RequestMapping("/rosebud")
 	public @ResponseBody String test(HttpServletRequest req) {
-		return ContentBuilder.run("/pagetypes/bootstrap/sample", loader, req);
+		ContentBuilder cb = ContentBuilder.getSimpleContentBuilder(req);
+		return cb.run("/pagetypes/bootstrap/sample");
 	}
 
 	@RequestMapping("/sport")
 	public @ResponseBody String sport(HttpServletRequest req) {
+		ContentBuilder cb = ContentBuilder.getSimpleContentBuilder(req);
 		Fragment root = loader.load("/pagetypes/bootstrap/sample");
 		RosebudHelper.getFragmentWithName(root, "keyvisual").addSingleData(
 				"headline", "Die Sportrubrik");
-		return ContentBuilder.createPage(null, root, req);
+		return cb.createPage(null, root);
 	}
 
 	@RequestMapping("/art")
 	public @ResponseBody String art(HttpServletRequest req) {
+		ContentBuilder cb = ContentBuilder.getSimpleContentBuilder(req);
 		Fragment root = loader.load("/pagetypes/bootstrap/sample");
 		RosebudHelper.getFragmentWithName(root, "keyvisual").addSingleData(
 				"headline", "Die Kunstrubrik");
-		return ContentBuilder.createPage(null, root, req);
+		return cb.createPage(null, root);
 	}
 	
 	@RequestMapping("/test")
 	public @ResponseBody String testJS(HttpServletRequest req) {
+		ContentBuilder cb = ContentBuilder.getSimpleContentBuilder(req);
 		Fragment root = loader.load("/pagetypes/test/sample_js");
-		return ContentBuilder.createPage(null, root, req);
+		return cb.createPage(null, root);
 	}
 
 
