@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import de.rosebud.core.Configuration;
 import de.rosebud.core.ContentBuilder;
 import de.rosebud.core.Fragment;
 import de.rosebud.core.Loader;
@@ -42,6 +43,7 @@ public class Rosebud {
 	@RequestMapping("/art")
 	public @ResponseBody String art(HttpServletRequest req) {
 		ContentBuilder cb = ContentBuilder.getSimpleContentBuilder(req);
+		cb.getConfiguration().setDebugLevel(Configuration.DebugLevel.DEBUG);
 		Fragment root = loader.load("/pagetypes/bootstrap/sample");
 		RosebudHelper.getFragmentWithName(root, "keyvisual").addSingleData(
 				"headline", "Die Kunstrubrik");

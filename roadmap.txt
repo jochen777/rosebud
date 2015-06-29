@@ -24,7 +24,7 @@ New complex websites in minutes.
 * Trader, der entscheidet, welches Templates angezogen werden. (OK)
 * Cewl: Fragment-Defintion can only hold a reference to another "page" or fragment defintion (ie: "ref": "/sample/frags/complex_frag") (OK)
 * Javascript als Sprache für Fragments zulassen. (OK! - so nice!) 
-* better config with setter-methods (will be nice with DI)
+* better config with setter-methods (will be nice with DI) (OK)
 * debug-mode: Gibt Kommentare über- und unter Templates aus.
 * page-structure "inheritance" for cross cutting concerns (global configs: for project, for direcotry, for page. (templatename, behavirours, data, caching)
 * Fragment-Tree at the bottom
@@ -50,6 +50,7 @@ New complex websites in minutes.
 
 
 TBD:
+* How to handle multinational-stuff?
 * Is global data really useful?
 * Useful to have an "end-template"? or better a template with an embedded Tag (<ROSEBUD_CONTENT>), like Gauss VIP?
 * Event-System or better a message-bus?

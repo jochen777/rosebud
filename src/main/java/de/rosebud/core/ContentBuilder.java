@@ -21,12 +21,16 @@ import com.samskivert.mustache.Mustache;
 
 // RFE: Perhaps rename this to "rosebud" :)
 public class ContentBuilder {
-	
+
 	Loader loader;
 	Configuration configuration;
+	public Configuration getConfiguration() {
+		return configuration;
+	}
+
 	Environment env;
 	TemplateBroker templateBroker;
-	
+
 	public void setTemplateBroker(TemplateBroker templateBroker) {
 		this.templateBroker = templateBroker;
 	}
@@ -59,7 +63,8 @@ public class ContentBuilder {
 		if (cachedVersion == null) {
 			Fragment root = loader.load(pageName);
 			cachedVersion = createPage(null, root);
-			CacheProvider.getInstance().put(this.env.req.getRequestURI(), cachedVersion);
+			CacheProvider.getInstance().put(this.env.req.getRequestURI(),
+					cachedVersion);
 		}
 		return cachedVersion;
 	}
@@ -67,19 +72,16 @@ public class ContentBuilder {
 	public String createPage(Map<String, Object> globals, Fragment root,
 			TemplateBroker templateBroker) {
 		Mustache.Compiler compiler = prepareTemplateRenderer();
-		
+
 		EventBus eventBus = new EventBus("rosebud-page" + root.getName());
 		ContentBuilder.registerListeners(root, eventBus);
 		ContentBuilder.contentLoad(globals, root, eventBus, env);
-		return ContentBuilder.getContent(root, compiler, templateBroker);
+		return getContent(root, compiler, templateBroker);
 	}
-	
-	
+
 	public String createPage(Map<String, Object> globals, Fragment root) {
 		return createPage(globals, root, templateBroker);
 	}
-	
-	
 
 	private static Mustache.Compiler prepareTemplateRenderer() {
 		Resource resourceDir = new ClassPathResource("/templates/");
@@ -101,20 +103,40 @@ public class ContentBuilder {
 	}
 
 	// Generates the HTML out of the prepared tree
-	private static String getContent(Fragment fragment,
-			Mustache.Compiler compiler, TemplateBroker templateBroker) {
-		StringBuilder start = new StringBuilder(TemplateRenderer.parseTemplate(
-				templateBroker.getTemplate(fragment.getStartTemplate()) + ".html", fragment.getData(), fragment,
-				compiler));
+	// TODO: DO this in a an own class
+	private String getContent(Fragment fragment, Mustache.Compiler compiler,
+			TemplateBroker templateBroker) {
+		StringBuilder start = new StringBuilder();
+		if (configuration.getDebugLevel().getLevel() <= configuration.debugLevel.DEBUG
+				.getLevel()) {
+			start.append("<!-- START: " + fragment.getStartTemplate() + "-->");
+		}
+		start.append(TemplateRenderer.parseTemplate(
+				templateBroker.getTemplate(fragment.getStartTemplate())
+						+ ".html", fragment.getData(), fragment, compiler));
+		if (configuration.getDebugLevel().getLevel() <= configuration.debugLevel.DEBUG
+				.getLevel()) {
+			start.append("<!-- END: " + fragment.getStartTemplate() + "-->");
+		}
 		for (Fragment child : fragment.getChilds()) {
-			start.append(ContentBuilder.getContent(child, compiler, templateBroker));
+			start.append(getContent(child, compiler, templateBroker));
 		}
 		// End - Template
-		String endTemplateName = templateBroker.getTemplate(fragment.getStartTemplate() + "_end") + ".html"; 
+		String endTemplateName = templateBroker.getTemplate(fragment
+				.getStartTemplate() + "_end")
+				+ ".html";
 		Resource endTemplateResource = new ClassPathResource(endTemplateName);
 		if (endTemplateResource.exists()) {
-			start.append(TemplateRenderer.parseTemplate(endTemplateName, fragment.getData(),
-					fragment, compiler));
+			if (configuration.getDebugLevel().getLevel() <= configuration.debugLevel.DEBUG
+					.getLevel()) {
+				start.append("<!-- ENDTemplate: " + fragment.getStartTemplate() + "-->");
+			}
+			start.append(TemplateRenderer.parseTemplate(endTemplateName,
+					fragment.getData(), fragment, compiler));
+			if (configuration.getDebugLevel().getLevel() <= configuration.debugLevel.DEBUG
+					.getLevel()) {
+				start.append("<!-- ENDTemplate_END: " + fragment.getStartTemplate() + "-->");
+			}
 		}
 		return start.toString();
 	}
