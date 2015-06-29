@@ -19,18 +19,21 @@ public class TemplateBrokerTest {
 
 	@Test
 	public void testMobileTree() {
-		Loader loader = new Loader();
-		Fragment root = loader.load("/pagetypes/test/sample_test");
 
 		MockHttpServletRequest mockedRequest = new MockHttpServletRequest();
 		mockedRequest.setRequestURI("test00");
 		mockedRequest.addHeader("User-Agent", "something phone 88");
+
 		MobileAwareTemplateBroker templateBroker = new MobileAwareTemplateBroker();
 		templateBroker.init(mockedRequest);
 
-		String htmlOutput = ContentBuilder.createPage(null, root,
-				mockedRequest, templateBroker);
 
+		ContentBuilder cb = ContentBuilder.getSimpleContentBuilder(mockedRequest);
+		cb.setTemplateBroker(templateBroker);
+		String htmlOutput = cb.run("/pagetypes/test/sample_test");
+
+		
+		
 		assertEquals("Hello World Phone mytestChild Phone Child1Child Phone Child2", htmlOutput);
 	}
 

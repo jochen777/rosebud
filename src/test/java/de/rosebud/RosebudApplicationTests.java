@@ -30,11 +30,11 @@ public class RosebudApplicationTests {
 	
 	@Test
 	public void testExampleTree() {
-		Fragment root = loader.load("/pagetypes/test/sample_test");
-		Map<String, Object> model = new HashMap<String, Object>();
 		MockHttpServletRequest mockedRequest = new MockHttpServletRequest();
 		mockedRequest.setRequestURI("test00");
-		String htmlOutput = ContentBuilder.createPage(model, root, mockedRequest);
+
+		ContentBuilder cb = ContentBuilder.getSimpleContentBuilder(mockedRequest);
+		String htmlOutput = cb.run("/pagetypes/test/sample_test");
 
 		assertEquals("Hello World mytestChild Child1Child Child2", htmlOutput);
 	}

@@ -49,6 +49,7 @@ public class ContentBuilder {
 		cb.configuration = new Configuration();
 		cb.env = new Environment();
 		cb.env.setReq(req);
+		cb.templateBroker = new TemplateBroker();
 		return cb;
 	}
 
@@ -75,7 +76,6 @@ public class ContentBuilder {
 	
 	
 	public String createPage(Map<String, Object> globals, Fragment root) {
-		TemplateBroker templateBroker = new TemplateBroker();
 		return createPage(globals, root, templateBroker);
 	}
 	

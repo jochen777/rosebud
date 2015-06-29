@@ -16,32 +16,26 @@ public class RosebudTest{
 
 	@Test
 	public void testExampleTree() {
-		Loader loader = new Loader();
-		Fragment root = loader.load("/pagetypes/test/sample_test");
-		Map<String, Object> model = new HashMap<String, Object>();
-
 		MockHttpServletRequest mockedRequest = new MockHttpServletRequest();
 		mockedRequest.setRequestURI("test00");
-
-		String htmlOutput = ContentBuilder.createPage(model, root,
-				mockedRequest);
-
+		
+		ContentBuilder cb = ContentBuilder.getSimpleContentBuilder(mockedRequest);
+		String htmlOutput = cb.run("/pagetypes/test/sample_test");
+		
 		assertEquals("Hello World mytestChild Child1Child Child2", htmlOutput);
 	}
 
 	@Test
 	public void testJSHead() {
-		Loader loader = new Loader();
-		Fragment root = loader.load("/pagetypes/test/sample_js_head");
-		Map<String, Object> model = new HashMap<String, Object>();
 
 		MockHttpServletRequest mockedRequest = new MockHttpServletRequest();
 		mockedRequest.setRequestURI("test0");
 
 
-		String htmlOutput = ContentBuilder.createPage(model, root,
-				mockedRequest);
+		ContentBuilder cb = ContentBuilder.getSimpleContentBuilder(mockedRequest);
+		String htmlOutput = cb.run("/pagetypes/test/sample_js_head");
 
+		
 		assertEquals(
 				"Header Elemnt JS:/js/example.js\nChild Child1Child Child2",
 				htmlOutput);
@@ -64,9 +58,12 @@ public class RosebudTest{
 
 		MockHttpServletRequest mockedRequest = new MockHttpServletRequest();
 		mockedRequest.setRequestURI("test1");
+		
+		ContentBuilder cb = ContentBuilder.getSimpleContentBuilder(mockedRequest);
 
-		String htmlOutput = ContentBuilder
-				.createPage(null, root, mockedRequest);
+
+		String htmlOutput = cb
+				.createPage(null, root);
 
 		assertEquals(
 				"Hello World testcontentChild childcontentChild childcontent",
@@ -76,18 +73,17 @@ public class RosebudTest{
 	@Test
 	public void testRequestParams() {
 
-		Loader loader = new Loader();
-		Fragment root = loader.load("/pagetypes/test/sample_test_request");
-		Map<String, Object> model = new HashMap<String, Object>();
-
 		MockHttpServletRequest mockedRequest = new MockHttpServletRequest();
 		mockedRequest.setRequestURI("test2");
 
 		String name = "Jochen Pier";
 		mockedRequest.setParameter("name", name);
-		String htmlOutput = ContentBuilder.createPage(model, root,
-				mockedRequest);
 
+		
+		ContentBuilder cb = ContentBuilder.getSimpleContentBuilder(mockedRequest);
+		String htmlOutput = cb.run("/pagetypes/test/sample_test_request");
+
+		
 		assertEquals("Hello World mytest - " + name
 				+ "Child Child1Child Child2", htmlOutput);
 	}

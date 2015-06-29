@@ -20,14 +20,12 @@ public class PageTypeRefTest {
 	@Test
 	public void testPageTypeRef() {
 		// tests, if "ref" will load a foreign template tree
-		Loader loader = new Loader();
-		Fragment root = loader.load("/pagetypes/test/sample_test_ref");
 
 		MockHttpServletRequest mockedRequest = new MockHttpServletRequest();
 		mockedRequest.setRequestURI("test00");
 
-		String htmlOutput = ContentBuilder.createPage(null, root,
-				mockedRequest);
+		ContentBuilder cb = ContentBuilder.getSimpleContentBuilder(mockedRequest);
+		String htmlOutput = cb.run("/pagetypes/test/sample_test_ref");
 
 		assertEquals("Hello World ParentHello World mytestChild Child1Child Child2", htmlOutput);
 	}
