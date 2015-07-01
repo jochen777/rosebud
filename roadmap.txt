@@ -25,9 +25,10 @@ New complex websites in minutes.
 * Cewl: Fragment-Defintion can only hold a reference to another "page" or fragment defintion (ie: "ref": "/sample/frags/complex_frag") (OK)
 * Javascript als Sprache für Fragments zulassen. (OK! - so nice!) 
 * better config with setter-methods (will be nice with DI) (OK)
-* debug-mode: Gibt Kommentare über- und unter Templates aus.
-* page-structure "inheritance" for cross cutting concerns (global configs: for project, for direcotry, for page. (templatename, behavirours, data, caching)
+* debug-mode: Gibt Kommentare über- und unter Templates aus. (OK - but could be done better)
 * Fragment-Tree at the bottom
+* move Page rendering out of ContentBuilder
+* page-structure "inheritance" for cross cutting concerns (global configs: for project, for direcotry, for page. (templatename, behavirours, data, caching)
 * create a page-wide logging-buffer. Can be outputted under page in browser.
 * create more clever caching
 

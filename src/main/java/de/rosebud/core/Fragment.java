@@ -37,6 +37,10 @@ public class Fragment {
 
 	// typical node informations
 	Fragment parent;
+	public Fragment getParent() {
+		return parent;
+	}
+
 	// RFE: Only create new ArrayList if wanted!
 	List<Fragment> childs = new ArrayList<Fragment>();
 	
@@ -77,6 +81,9 @@ public class Fragment {
 	}
 
 	public void addSingleData(String key, Object data) {
+		if (this.data == null){
+			this.data = new HashMap<String, Object>();
+		}
 		this.data.put(key, data);
 	}
 

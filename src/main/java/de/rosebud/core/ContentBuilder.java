@@ -73,6 +73,11 @@ public class ContentBuilder {
 			TemplateBroker templateBroker) {
 		Mustache.Compiler compiler = prepareTemplateRenderer();
 
+		if (configuration.getDebugLevel() == configuration.debugLevel.DEBUG) {
+			Fragment debugComponent = loader.load("/de/rosebud/core/debug/debug_component");
+			root.addChild(debugComponent);
+		}
+		
 		EventBus eventBus = new EventBus("rosebud-page" + root.getName());
 		ContentBuilder.registerListeners(root, eventBus);
 		ContentBuilder.contentLoad(globals, root, eventBus, env);
