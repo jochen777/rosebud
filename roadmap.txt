@@ -26,9 +26,10 @@ New complex websites in minutes.
 * Javascript als Sprache für Fragments zulassen. (OK! - so nice!) 
 * better config with setter-methods (will be nice with DI) (OK)
 * debug-mode: Gibt Kommentare über- und unter Templates aus. (OK - but could be done better)
-* Fragment-Tree at the bottom
-* move Page rendering out of ContentBuilder
+* Fragment-Tree at the bottom (OK) - 
 * page-structure "inheritance" for cross cutting concerns (global configs: for project, for direcotry, for page. (templatename, behavirours, data, caching)
+* Fragment-Tree at the bottom with nice styles and more info
+* move Page rendering out of ContentBuilder
 * create a page-wide logging-buffer. Can be outputted under page in browser.
 * create more clever caching
 
