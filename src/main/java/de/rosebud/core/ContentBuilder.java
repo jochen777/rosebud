@@ -24,6 +24,7 @@ public class ContentBuilder {
 
 	Loader loader;
 	Configuration configuration;
+
 	public Configuration getConfiguration() {
 		return configuration;
 	}
@@ -58,8 +59,8 @@ public class ContentBuilder {
 	}
 
 	public String run(String pageName) {
-		String cachedVersion = CacheProvider.getInstance().get(
-				this.env.req.getRequestURI());
+		String cachedVersion = null;// CacheProvider.getInstance().get(
+		// this.env.req.getRequestURI());
 		if (cachedVersion == null) {
 			Fragment root = loader.load(pageName);
 			cachedVersion = createPage(null, root);
@@ -74,10 +75,11 @@ public class ContentBuilder {
 		Mustache.Compiler compiler = prepareTemplateRenderer();
 
 		if (configuration.getDebugLevel() == configuration.debugLevel.DEBUG) {
-			Fragment debugComponent = loader.load("/de/rosebud/core/debug/debug_component");
+			Fragment debugComponent = loader
+					.load("/de/rosebud/core/debug/debug_component");
 			root.addChild(debugComponent);
 		}
-		
+
 		EventBus eventBus = new EventBus("rosebud-page" + root.getName());
 		ContentBuilder.registerListeners(root, eventBus);
 		ContentBuilder.contentLoad(globals, root, eventBus, env);
@@ -112,36 +114,30 @@ public class ContentBuilder {
 	private String getContent(Fragment fragment, Mustache.Compiler compiler,
 			TemplateBroker templateBroker) {
 		StringBuilder start = new StringBuilder();
-		if (configuration.getDebugLevel().getLevel() <= configuration.debugLevel.DEBUG
-				.getLevel()) {
-			start.append("<!-- START: " + fragment.getStartTemplate() + "-->");
-		}
-		start.append(TemplateRenderer.parseTemplate(
+
+		Resource resource = new ClassPathResource(
 				templateBroker.getTemplate(fragment.getStartTemplate())
-						+ ".html", fragment.getData(), fragment, compiler));
-		if (configuration.getDebugLevel().getLevel() <= configuration.debugLevel.DEBUG
-				.getLevel()) {
-			start.append("<!-- END: " + fragment.getStartTemplate() + "-->");
+						+ ".html");
+		String templateText;
+		try {
+			templateText = RosebudHelper.readFile(resource.getInputStream());
+		} catch (IOException e) {
+			return ErrorHandler.getTemplateRenderErrorMessage(e, fragment);
 		}
+		
+		String [] templateChunks = RosebudHelper.getChunksOfTemplate(templateText);
+		
+		
+		start.append(TemplateRenderer.parseTemplate(templateChunks[0],
+				fragment.getData(), fragment, compiler));
+
 		for (Fragment child : fragment.getChilds()) {
 			start.append(getContent(child, compiler, templateBroker));
 		}
 		// End - Template
-		String endTemplateName = templateBroker.getTemplate(fragment
-				.getStartTemplate() + "_end")
-				+ ".html";
-		Resource endTemplateResource = new ClassPathResource(endTemplateName);
-		if (endTemplateResource.exists()) {
-			if (configuration.getDebugLevel().getLevel() <= configuration.debugLevel.DEBUG
-					.getLevel()) {
-				start.append("<!-- ENDTemplate: " + fragment.getStartTemplate() + "-->");
-			}
-			start.append(TemplateRenderer.parseTemplate(endTemplateName,
+		if (templateChunks.length == 2) {
+			start.append(TemplateRenderer.parseTemplate(templateChunks[1],
 					fragment.getData(), fragment, compiler));
-			if (configuration.getDebugLevel().getLevel() <= configuration.debugLevel.DEBUG
-					.getLevel()) {
-				start.append("<!-- ENDTemplate_END: " + fragment.getStartTemplate() + "-->");
-			}
 		}
 		return start.toString();
 	}

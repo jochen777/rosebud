@@ -6,8 +6,13 @@ import java.util.List;
 
 import org.apache.commons.io.IOUtils;
 
+import com.google.common.base.Splitter;
+
 // some helper/conveniance methods that are not directly related to the core 
 public class RosebudHelper {
+	
+	 static String DELIM = "##CONT##";
+
 
 	// convenient method to quickly set a new template to a specific fragment
 	public static void setTemplateToFragmentName(Fragment startFragment,
@@ -53,10 +58,34 @@ public class RosebudHelper {
 
 	
 	// reads the file into a string. (do we really need this?!?)
-	static String readFile(InputStream inputStream) throws IOException {
-		String theString = IOUtils.toString(inputStream, "UTF-8");
+	// RFE: Introduce a cachedFileReader
+	static String readFile(InputStream inputStream)  {
+		String theString;
+		try {
+			theString = IOUtils.toString(inputStream, "UTF-8");
+		} catch (IOException e) {
+			throw new RuntimeException(e);
+		}
 		IOUtils.closeQuietly(inputStream);
 		return theString;
 	}
+	
+	static String [] getChunksOfTemplate(String template) {
+		// RFE: Check if guava Splitter is faster : Iterable<String> it = Splitter.on(delim).split(ff);
+		 int p = template.indexOf(DELIM);
+		 if (p >= 0) {
+			 String [] result = new String [2];
+			 result[0]= template.substring(0, p);
+			 result[1] = template.substring(p + DELIM.length());
+			 return result;
+		 } else {
+			 String [] result = new String [1];
+			 result[0] = template;
+			 return result;
+		 }
 
+	}
+
+	
+	
 }

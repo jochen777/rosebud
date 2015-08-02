@@ -34,6 +34,7 @@ public class Rosebud {
 	@RequestMapping("/sport")
 	public @ResponseBody String sport(HttpServletRequest req) {
 		ContentBuilder cb = ContentBuilder.getSimpleContentBuilder(req);
+		cb.getConfiguration().setDebugLevel(Configuration.DebugLevel.DEBUG);
 		Fragment root = loader.load("/pagetypes/bootstrap/sample");
 		RosebudHelper.getFragmentWithName(root, "keyvisual").addSingleData(
 				"headline", "Die Sportrubrik");
