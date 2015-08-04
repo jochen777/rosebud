@@ -31,6 +31,7 @@ public class ContentBuilder {
 
 	Environment env;
 	TemplateBroker templateBroker;
+	TemplateRenderer templateRenderer;
 
 	public void setTemplateBroker(TemplateBroker templateBroker) {
 		this.templateBroker = templateBroker;
@@ -55,6 +56,10 @@ public class ContentBuilder {
 		cb.env = new Environment();
 		cb.env.setReq(req);
 		cb.templateBroker = new TemplateBroker();
+		TemplateRendererMustache mustacheTemplateRenderer = new TemplateRendererMustache();
+		mustacheTemplateRenderer.setCompiler(prepareTemplateRenderer());
+		cb.templateRenderer = mustacheTemplateRenderer;
+		
 		return cb;
 	}
 
@@ -128,16 +133,16 @@ public class ContentBuilder {
 		String [] templateChunks = RosebudHelper.getChunksOfTemplate(templateText);
 		
 		
-		start.append(TemplateRenderer.parseTemplate(templateChunks[0],
-				fragment.getData(), fragment, compiler));
+		start.append(templateRenderer.parseTemplate(templateChunks[0],
+				fragment.getData(), fragment));
 
 		for (Fragment child : fragment.getChilds()) {
 			start.append(getContent(child, compiler, templateBroker));
 		}
 		// End - Template
 		if (templateChunks.length == 2) {
-			start.append(TemplateRenderer.parseTemplate(templateChunks[1],
-					fragment.getData(), fragment, compiler));
+			start.append(templateRenderer.parseTemplate(templateChunks[1],
+					fragment.getData(), fragment));
 		}
 		return start.toString();
 	}
