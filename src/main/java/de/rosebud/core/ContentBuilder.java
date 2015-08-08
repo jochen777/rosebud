@@ -33,6 +33,10 @@ public class ContentBuilder {
 	TemplateBroker templateBroker;
 	TemplateRenderer templateRenderer;
 
+	public void setTemplateRenderer(TemplateRenderer templateRenderer) {
+		this.templateRenderer = templateRenderer;
+	}
+
 	public void setTemplateBroker(TemplateBroker templateBroker) {
 		this.templateBroker = templateBroker;
 	}
@@ -59,9 +63,11 @@ public class ContentBuilder {
 		TemplateRendererMustache mustacheTemplateRenderer = new TemplateRendererMustache();
 		mustacheTemplateRenderer.setCompiler(prepareTemplateRenderer());
 		cb.templateRenderer = mustacheTemplateRenderer;
-		
+
 		return cb;
 	}
+
+	
 
 	public String run(String pageName) {
 		String cachedVersion = null;// CacheProvider.getInstance().get(
@@ -77,7 +83,6 @@ public class ContentBuilder {
 
 	public String createPage(Map<String, Object> globals, Fragment root,
 			TemplateBroker templateBroker) {
-		Mustache.Compiler compiler = prepareTemplateRenderer();
 
 		if (configuration.getDebugLevel() == configuration.debugLevel.DEBUG) {
 			Fragment debugComponent = loader
@@ -88,7 +93,7 @@ public class ContentBuilder {
 		EventBus eventBus = new EventBus("rosebud-page" + root.getName());
 		ContentBuilder.registerListeners(root, eventBus);
 		ContentBuilder.contentLoad(globals, root, eventBus, env);
-		return getContent(root, compiler, templateBroker);
+		return getContent(root, templateBroker);
 	}
 
 	public String createPage(Map<String, Object> globals, Fragment root) {
@@ -116,8 +121,7 @@ public class ContentBuilder {
 
 	// Generates the HTML out of the prepared tree
 	// TODO: DO this in a an own class
-	private String getContent(Fragment fragment, Mustache.Compiler compiler,
-			TemplateBroker templateBroker) {
+	private String getContent(Fragment fragment, TemplateBroker templateBroker) {
 		StringBuilder start = new StringBuilder();
 
 		Resource resource = new ClassPathResource(
@@ -129,15 +133,15 @@ public class ContentBuilder {
 		} catch (IOException e) {
 			return ErrorHandler.getTemplateRenderErrorMessage(e, fragment);
 		}
-		
-		String [] templateChunks = RosebudHelper.getChunksOfTemplate(templateText);
-		
-		
+
+		String[] templateChunks = RosebudHelper
+				.getChunksOfTemplate(templateText);
+
 		start.append(templateRenderer.parseTemplate(templateChunks[0],
 				fragment.getData(), fragment));
 
 		for (Fragment child : fragment.getChilds()) {
-			start.append(getContent(child, compiler, templateBroker));
+			start.append(getContent(child, templateBroker));
 		}
 		// End - Template
 		if (templateChunks.length == 2) {
@@ -150,6 +154,11 @@ public class ContentBuilder {
 	// Prepares the tree
 	private static void contentLoad(Map<String, Object> globals,
 			Fragment fragment, EventBus eventBus, Environment env) {
+	    
+	    // add globals to fragment-data
+	    // Beware: globals will overwrite locals!!
+	    fragment.getData().putAll(globals);
+	    
 		// RFE: Do this async?
 		List<Behaviour> behaviours = fragment.getBehavoiours();
 		for (Behaviour behaviour : behaviours) {

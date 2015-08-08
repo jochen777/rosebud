@@ -34,6 +34,7 @@ New complex websites in minutes.
 * create more clever caching
 
 
+* create own class for model (not map<string, object>)
 * Format everything with google-formater
 * Fragment ref not perfect: Something like wrapper would be a nice addition
 * Makros (partials)
