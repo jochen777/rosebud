@@ -33,7 +33,7 @@ New complex websites in minutes.
 * create a page-wide logging-buffer. Can be outputted under page in browser.
 * create more clever caching
 
-
+* Builder pattern for configuration
 * create own class for model (not map<string, object>)
 * Format everything with google-formater
 * Fragment ref not perfect: Something like wrapper would be a nice addition
@@ -58,3 +58,6 @@ TBD:
 * Is global data really useful?
 * Useful to have an "end-template"? or better a template with an embedded Tag (<ROSEBUD_CONTENT>), like Gauss VIP?
 * Event-System or better a message-bus?
+
+* Vision: Tree of components that transforms as the user clicks and gains the history in memory. As Angular2 but on the server. No single controllers any more.
+* Check: Can fragments be included like an "include-directive" wihtin the template-code? That is sometimes more convenient than building the json-page-tree structure 

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public class DataProviderChain {
     private List<DataProvider> dataProviderChain = new ArrayList<>();
+    Map<String, Object> data = new HashMap<>();
 
     public DataProviderChain addDataProvider(DataProvider dp) {
         dataProviderChain.add(dp);
@@ -23,7 +24,7 @@ public class DataProviderChain {
     public Map<String, Object> enrichData(HttpServletRequest req) {
         Map<String, Object> global = new HashMap<>();
         for (DataProvider dataProvider : dataProviderChain) {
-            global.putAll(dataProvider.enrichData(req));
+            global.putAll(dataProvider.enrichData(req, global));
         }
         return global;
     }

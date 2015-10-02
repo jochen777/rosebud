@@ -10,5 +10,5 @@ public abstract class DataProvider {
     public Map<String, Object> getGlobalData() {
         return globalData;
     }
-    public abstract Map<String, Object> enrichData(HttpServletRequest req);
+    public abstract Map<String, Object> enrichData(HttpServletRequest req, Map<String, Object> global);
 }

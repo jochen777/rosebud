@@ -70,17 +70,16 @@ public class ContentBuilder {
 	
 
 	public String run(String pageName) {
-		String cachedVersion = null;// CacheProvider.getInstance().get(
-		// this.env.req.getRequestURI());
-		if (cachedVersion == null) {
 			Fragment root = loader.load(pageName);
-			cachedVersion = createPage(null, root);
-			CacheProvider.getInstance().put(this.env.req.getRequestURI(),
-					cachedVersion);
-		}
-		return cachedVersion;
+			return createPage(null, root);
 	}
 
+    public String run(String pageName, HttpServletRequest req) {
+        this.env.setReq(req);
+        return this.run(pageName);
+}
+
+	
 	public String createPage(Map<String, Object> globals, Fragment root,
 			TemplateBroker templateBroker) {
 
@@ -100,7 +99,7 @@ public class ContentBuilder {
 		return createPage(globals, root, templateBroker);
 	}
 
-	private static Mustache.Compiler prepareTemplateRenderer() {
+	public static Mustache.Compiler prepareTemplateRenderer() {
 		Resource resourceDir = new ClassPathResource("/templates/");
 		File templateDir;
 		try {
@@ -157,7 +156,9 @@ public class ContentBuilder {
 	    
 	    // add globals to fragment-data
 	    // Beware: globals will overwrite locals!!
-	    fragment.getData().putAll(globals);
+	    if (globals != null) {
+	        fragment.getData().putAll(globals);
+	    }
 	    
 		// RFE: Do this async?
 		List<Behaviour> behaviours = fragment.getBehavoiours();

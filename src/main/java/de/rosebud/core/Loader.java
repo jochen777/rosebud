@@ -1,17 +1,13 @@
 package de.rosebud.core;
 
-import static org.junit.Assert.assertNotNull;
-
 import java.io.IOException;
 
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.core.JsonParser.Feature;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -58,15 +54,6 @@ public class Loader {
 		fragment.setName(fc.getName());
 
 		fragment.setData(fc.getData());
-		if (fc.getCache() != null) {
-			if (fc.getCache().equals("normal")) {
-				fragment.setCacheType(CacheType.normal);
-			} else {
-				// TBE: implement correct logging system
-				System.err.println("wrong caching!");
-			}
-			
-		}
 
 		if (fc.getBehavs() != null){
 			// load behaviour
