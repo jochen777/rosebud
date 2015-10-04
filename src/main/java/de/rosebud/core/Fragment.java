@@ -17,104 +17,104 @@ import com.google.common.eventbus.EventBus;
  */
 public class Fragment {
 
-	public Fragment(String startTemplate) {
-		this.startTemplate = startTemplate;
-	}
+    public Fragment(String startTemplate) {
+        this.startTemplate = startTemplate;
+    }
 
-	public Fragment() {
+    public Fragment() {
 
-	}
-	
-	CacheType cacheType = null;
+    }
 
-	public CacheType getCacheType() {
-		return cacheType;
-	}
+    CacheType cacheType = null;
 
-	public void setCacheType(CacheType cacheType) {
-		this.cacheType = cacheType;
-	}
+    public CacheType getCacheType() {
+        return cacheType;
+    }
 
-	// typical node informations
-	Fragment parent;
-	public Fragment getParent() {
-		return parent;
-	}
+    public void setCacheType(CacheType cacheType) {
+        this.cacheType = cacheType;
+    }
 
-	// RFE: Only create new ArrayList if wanted!
-	List<Fragment> childs = new ArrayList<Fragment>();
-	
-	// RFE: Only create new ArrayList if wanted!
-	List<Behaviour> behavoiours = new ArrayList<Behaviour>();
-	
-	public List<Behaviour> getBehavoiours() {
-		return behavoiours;
-	}
-	
-	public void addBehaviour(Behaviour behaviour) {
-		behavoiours.add(behaviour);
-		behaviour.setHostFragment(this);
-	}
+    // typical node informations
+    Fragment parent;
 
-	public List<Fragment> getChilds() {
-		return childs;
-	}
+    public Fragment getParent() {
+        return parent;
+    }
 
-	// Template-Name that should be rendered. (Automatically added an +"_end"
-	// Template, if exists
-	String startTemplate;
-	// Internal Name for fragment. Can be used to find a typical fragment within
-	// a tree (example: "navi", "head", "breadcrump"..)
-	String name;
+    // RFE: Only create new ArrayList if wanted!
+    List<Fragment> childs = new ArrayList<Fragment>();
 
+    // RFE: Only create new ArrayList if wanted!
+    List<Behaviour> behavoiours = new ArrayList<Behaviour>();
 
-	// data that should be rendered.
-	protected Map<String, Object> data = new HashMap<String, Object>();
+    public List<Behaviour> getBehavoiours() {
+        return behavoiours;
+    }
 
-	public Map<String, Object> getData() {
-		return data;
-	}
+    public void addBehaviour(Behaviour behaviour) {
+        behavoiours.add(behaviour);
+        behaviour.setHostFragment(this);
+    }
 
-	// initial data
-	public void setData(Map<String, Object> data) {
-		this.data = data;
-	}
+    public List<Fragment> getChilds() {
+        return childs;
+    }
 
-	public void addSingleData(String key, Object data) {
-		if (this.data == null){
-			this.data = new HashMap<String, Object>();
-		}
-		this.data.put(key, data);
-	}
+    // Template-Name that should be rendered.
+    String startTemplate;
+    // Internal Name for fragment. Can be used to find a typical fragment within
+    // a tree (example: "navi", "head", "breadcrump"..)
+    String name;
 
-	public String toString() {
-		return " StartTemplate: " + startTemplate;
-	}
+    // data that should be rendered.
+    protected Map<String, Object> data = new HashMap<String, Object>();
 
-	public void addChild(Fragment child) {
-		childs.add(child);
-		child.setParent(this);
-	}
+    public Map<String, Object> getData() {
+        return data;
+    }
 
-	public void setParent(Fragment parent) {
-		this.parent = parent;
-	}
+    // initial data
+    public void setData(Map<String, Object> data) {
+        if (data != null) {
+            this.data = data;
+        }
+    }
 
+    public void addSingleData(String key, Object data) {
+        if (this.data == null) {
+            this.data = new HashMap<String, Object>();
+        }
+        this.data.put(key, data);
+    }
 
-	public Fragment setStartTemplate(String startTemplate) {
-		this.startTemplate = startTemplate;
-		return this;
-	}
+    public String toString() {
+        return " StartTemplate: " + startTemplate;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public void addChild(Fragment child) {
+        childs.add(child);
+        child.setParent(this);
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setParent(Fragment parent) {
+        this.parent = parent;
+    }
 
-	public String getStartTemplate() {
-		return startTemplate;
-	}
+    public Fragment setStartTemplate(String startTemplate) {
+        this.startTemplate = startTemplate;
+        return this;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getStartTemplate() {
+        return startTemplate;
+    }
 }

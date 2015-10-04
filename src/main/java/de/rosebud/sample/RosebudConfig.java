@@ -29,4 +29,6 @@ public class RosebudConfig {
         cb.setTemplateRenderer(mustacheTemplateRenderer);
         return cb;
     }
+    
+    
 }

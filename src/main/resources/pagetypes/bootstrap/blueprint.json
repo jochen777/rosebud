@@ -1,6 +1,5 @@
 {
     "template": "/de/rosebud/sample/frags/head/head",
-    "cache": "complete",
     "data": {
         "title": "Rosebud Bootstrap Sample"
     },
@@ -43,32 +42,7 @@
         },
         {
             "template": "/de/rosebud/sample/frags/container/container",
-            "childs": [
-                {
-                    "template": "/de/rosebud/sample/frags/article/article",
-                    "data": {
-                        "headline": "Artikel1 Headline",
-                        "text": "A powerful component framework on top your favourite HTTP Framework. Build for your productivity",
-                        "link": "Mehr.."
-                    }
-                },
-                {
-                    "template": "/de/rosebud/sample/frags/article/article",
-                    "data": {
-                        "headline": "Artikel2 Headline",
-                        "text": "A powerful component framework on top your favourite HTTP Framework. Build for your productivity",
-                        "link": "Mehr.."
-                    }
-                },
-                {
-                    "template": "/de/rosebud/sample/frags/article/article",
-                    "data": {
-                        "headline": "Artikel3 Headline",
-                        "text": "A powerful component framework on top your favourite HTTP Framework. Build for your productivity",
-                        "link": "Mehr.."
-                    }
-                }
-            ]
+            "name": "content_container"
         }
     ]
 }
