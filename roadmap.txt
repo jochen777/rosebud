@@ -58,6 +58,7 @@ TBD:
 * Is global data really useful?
 * Useful to have an "end-template"? or better a template with an embedded Tag (<ROSEBUD_CONTENT>), like Gauss VIP?
 * Event-System or better a message-bus?
+* Possible to use different template-engines PER PAGE. (But will anybody want to use this?)
 
 * Vision: Tree of components that transforms as the user clicks and gains the history in memory. As Angular2 but on the server. No single controllers any more.
 * Check: Can fragments be included like an "include-directive" wihtin the template-code? That is sometimes more convenient than building the json-page-tree structure 

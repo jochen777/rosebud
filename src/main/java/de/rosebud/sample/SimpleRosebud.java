@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import de.rosebud.Data;
 import de.rosebud.core.ContentBuilder;
-import de.rosebud.core.PageContext;
+import de.rosebud.core.Fragment;
+import de.rosebud.core.RosebudHelper;
 
 @Controller
 public class SimpleRosebud {
@@ -31,6 +32,22 @@ public class SimpleRosebud {
                 "/de/rosebud/sample/frags/article/article", req);
     }
 
+    // advanced mvc example: modify several holes
+    @RequestMapping("/blueprint2")
+    public @ResponseBody String blueprint2(HttpServletRequest req) {
+         Fragment root = simpleContentBuilder.load("/pagetypes/bootstrap/blueprint");
+         
+         /*
+          *  if you want, you can load another pagetree here and append it.
+          *  This might be useful to integrate different teaser-columns  
+          */
+         RosebudHelper.getFragmentWithName(root, "content_container").
+             addChild(Fragment.build().setStartTemplate("/de/rosebud/sample/frags/article/article").
+                     setData(provideData(req)));
+         return simpleContentBuilder.createPage(provideGlobalData(), root, req);
+    }
+
+
     private Data provideData(HttpServletRequest req) {
         Data data = new Data();
         data.addData("headline", "Sample Headline Blueprint");
@@ -39,26 +56,10 @@ public class SimpleRosebud {
         return data;
     }
 
-    
     private Data provideGlobalData() {
         Data data = new Data();
         data.addData("title", "This is the Start Page Blueprint");
         return data;
-    }
-
-    // advanced mvc example: access the fragment tree and speak with them
-    @RequestMapping("/blueprint2")
-    public @ResponseBody String blueprint2(HttpServletRequest req) {
-        PageContext pageContext = new PageContext().setPageConfigName(
-                "/pagetypes/bootstrap/sample").setReq(req);
-        return simpleContentBuilder.run("/pagetypes/bootstrap/sample", req);
-    }
-
-    public static final String tt = "hello world";
-
-    @RequestMapping("/quick")
-    public @ResponseBody String quick(HttpServletRequest req) {
-        return tt;
     }
 
 }

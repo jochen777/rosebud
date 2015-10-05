@@ -4,9 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
-import com.google.common.eventbus.EventBus;
+import de.rosebud.Data;
 
 /**
  * Core fragment Object. Multiple fragments form a tree. A fragment gets or
@@ -79,6 +78,17 @@ public class Fragment {
         if (data != null) {
             this.data = data;
         }
+    }
+    
+    public Fragment setData(Data data) {
+        if (data != null) {
+            this.data = data.getMap();
+        }
+        return this;
+    }
+    
+    public static Fragment build() {
+        return new Fragment();
     }
 
     public void addSingleData(String key, Object data) {

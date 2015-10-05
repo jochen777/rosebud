@@ -75,6 +75,10 @@ public class ContentBuilder {
         return cb;
     }
     
+    public Fragment load(String pageTemplateName) {
+        return loader.load(pageTemplateName);
+    }
+    
     // RFE: Reduce number of arguments
     public String runWithHole(String pageTemplateName, 
             Data holeData, Data globalData, String fragmentTemplate, HttpServletRequest req) {
@@ -98,6 +102,12 @@ public class ContentBuilder {
         return this.run(pageName);
     }
 
+    public String createPage(Data globals, Fragment root, HttpServletRequest req) {
+        this.env.setReq(req);
+        return createPage(globals.getMap(), root);
+    }
+    
+    
     public String createPage(Map<String, Object> globals, Fragment root,
             TemplateBroker templateBroker) {
 
