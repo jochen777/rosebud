@@ -20,7 +20,6 @@ New complex websites in minutes.
 * Test: Componenten zusammenlegen (java + template) (OK)
 * crate Navigations-Fragment (OK)
 * Fragment is just a node! Datacollector is an optional helper of a fragment (OK)
-* caching (by request from fragment-configs) (OK - but work to do)
 * Trader, der entscheidet, welches Templates angezogen werden. (OK)
 * Cewl: Fragment-Defintion can only hold a reference to another "page" or fragment defintion (ie: "ref": "/sample/frags/complex_frag") (OK)
 * Javascript als Sprache für Fragments zulassen. (OK! - so nice!) 
@@ -29,34 +28,39 @@ New complex websites in minutes.
 * Fragment-Tree at the bottom (OK) - 
 * page-structure "inheritance" for cross cutting concerns (global configs: for project, for direcotry, for page. (templatename, behavirours, data, caching)
 * Fragment-Tree at the bottom with nice styles and more info (OK)
+* Fragment ref not perfect: Something like wrapper would be a nice addition (OK)
+* Clean up ContentBuilder
+* Harmonise pageConfigName
+* Harmonise Data
 * move Page rendering out of ContentBuilder 
-* create a page-wide logging-buffer. Can be outputted under page in browser.
 * create more clever caching
+* inline JSON - HTML Tags :-P
 
+
+* create a page-wide logging-buffer. Can be outputted under page in browser.
 * Builder pattern for configuration
-* create own class for model (not map<string, object>)
+* create own class for model (not map<string, object>) (OK)
 * Format everything with google-formater
-* Fragment ref not perfect: Something like wrapper would be a nice addition
 * Makros (partials)
-* Try different template engine (freemarker)
-* Maybe template abstraction to get more than one Template engine running? (YAGNI?)
+* Try different template engine (freemarker) (OK)
+* Maybe template abstraction to get more than one Template engine running? (OK)
 * Superior error-display (aufklappbarer Stacktrace...)
 * build some nice components (menu, header, head, footer, list, teasers, gallery...)
 * Add Bootstrap components
 * Add possibility to change between different template-sets
-* Allow Direct JSON-Defintions in controller
+* Allow Direct JSON-Defintions in controller (prio 2. Can be done with groovy)
 * import template set / provide template-sets (as jars?)
 * Check why Event Bus is so slow!
 * provide indenpendance from EventBus (two ways to render: With or without interfragment communication)
-* template-Renderer with interface, even more central! (with help of a bean?, singleton)
+* template-Renderer with interface, even more central! (with help of a bean?, singleton) (OK)
 * Caching (Config-Tree; Fragments with exact same Template, Input-Data and without listeners) 
 * Warning, if global data is overwritten by local (can be switched on or off!) Maybe dev-mode?
 
 
 TBD:
 * How to handle multinational-stuff?
-* Is global data really useful?
-* Useful to have an "end-template"? or better a template with an embedded Tag (<ROSEBUD_CONTENT>), like Gauss VIP?
+* Is global data really useful? (YES!)
+* Useful to have an "end-template"? or better a template with an embedded Tag (<ROSEBUD_CONTENT>), like Gauss VIP?(OK -> Just one Template with a ###Content###)
 * Event-System or better a message-bus?
 * Possible to use different template-engines PER PAGE. (But will anybody want to use this?)
 

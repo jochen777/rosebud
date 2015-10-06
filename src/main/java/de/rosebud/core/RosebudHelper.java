@@ -36,7 +36,7 @@ public class RosebudHelper {
 				return correctFragment;
 			}
 		}
-		return null;
+		throw new RuntimeException("Fragment with name " + name + " not found");
 	}
 
 	// returns the first fragment with beanName. 

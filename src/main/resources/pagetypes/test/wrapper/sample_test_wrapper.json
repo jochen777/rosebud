@@ -1,0 +1,7 @@
+{
+    "template": "/templates/test/unittest",
+    "name": "container",
+    "data": {
+        "test": "mytest"
+    }
+}

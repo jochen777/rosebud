@@ -47,6 +47,13 @@ public class SimpleRosebud {
          return simpleContentBuilder.createPage(provideGlobalData(), root, req);
     }
 
+    // simplest variant: render a json pagetype without dynamic data
+    @RequestMapping("/wrap")
+    public @ResponseBody String wrap(HttpServletRequest req) {
+        return simpleContentBuilder.run("/pagetypes/test/wrapper/sample_test", req);
+    }
+
+    
 
     private Data provideData(HttpServletRequest req) {
         Data data = new Data();

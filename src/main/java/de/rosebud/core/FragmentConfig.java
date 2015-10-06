@@ -18,7 +18,17 @@ public class FragmentConfig {
 	
 	String ref;
 	
-	public String getRef() {
+	FragmentWrapper wrap;
+	
+	public FragmentWrapper getWrap() {
+        return wrap;
+    }
+
+    public void setWrap(FragmentWrapper wrap) {
+        this.wrap = wrap;
+    }
+
+    public String getRef() {
 		return ref;
 	}
 

@@ -99,6 +99,14 @@ public class Loader {
 				fragment.addChild(loadFragment(fcChild));
 			}
 		}
+        if (fc.getWrap() != null) {
+            // load page that should wrap this
+            Fragment wrappingPage = this.load(fc.getWrap().ref);
+            Fragment container = RosebudHelper.getFragmentWithName(wrappingPage, fc.getWrap().containername);
+            container.addChild(fragment);
+            return wrappingPage;
+            
+        }
 		return fragment;
 	}
 

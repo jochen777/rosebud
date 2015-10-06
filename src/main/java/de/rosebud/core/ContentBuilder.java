@@ -84,7 +84,7 @@ public class ContentBuilder {
             Data holeData, Data globalData, String fragmentTemplate, HttpServletRequest req) {
         Fragment root = loader.load(pageTemplateName);
         TreeHelper.putAdHocFragmentInHole(root, holeData, fragmentTemplate);
-        getConfiguration().setDebugLevel(Configuration.DebugLevel.DEBUG);
+        //getConfiguration().setDebugLevel(Configuration.DebugLevel.DEBUG);
 
         this.env.setReq(req);
         return createPage(globalData.getMap(), root);
