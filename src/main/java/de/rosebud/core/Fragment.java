@@ -16,6 +16,39 @@ import de.rosebud.Data;
  */
 public class Fragment {
 
+    CacheType cacheType = null;
+
+    // typical node informations
+    Fragment parent;
+
+    // RFE: Only create new ArrayList if wanted!
+    List<Fragment> childs = new ArrayList<Fragment>();
+
+    // Template-Name that should be rendered.
+    String startTemplate;
+    
+    // RFE: Possible always load templates inline at first
+    // inline template
+    String inline;
+
+    public String getInline() {
+        return inline;
+    }
+
+    public void setInline(String inline) {
+        this.inline = inline;
+    }
+
+    // Internal Name for fragment. Can be used to find a typical fragment within
+    // a tree (example: "navi", "head", "breadcrump"..)
+    String name;
+
+    // data that should be rendered.
+    protected Map<String, Object> data = new HashMap<String, Object>();
+
+    // RFE: Only create new ArrayList if wanted!
+    List<Behaviour> behavoiours = new ArrayList<Behaviour>();
+
     public Fragment(String startTemplate) {
         this.startTemplate = startTemplate;
     }
@@ -23,8 +56,6 @@ public class Fragment {
     public Fragment() {
 
     }
-
-    CacheType cacheType = null;
 
     public CacheType getCacheType() {
         return cacheType;
@@ -34,18 +65,9 @@ public class Fragment {
         this.cacheType = cacheType;
     }
 
-    // typical node informations
-    Fragment parent;
-
     public Fragment getParent() {
         return parent;
     }
-
-    // RFE: Only create new ArrayList if wanted!
-    List<Fragment> childs = new ArrayList<Fragment>();
-
-    // RFE: Only create new ArrayList if wanted!
-    List<Behaviour> behavoiours = new ArrayList<Behaviour>();
 
     public List<Behaviour> getBehavoiours() {
         return behavoiours;
@@ -59,15 +81,6 @@ public class Fragment {
     public List<Fragment> getChilds() {
         return childs;
     }
-
-    // Template-Name that should be rendered.
-    String startTemplate;
-    // Internal Name for fragment. Can be used to find a typical fragment within
-    // a tree (example: "navi", "head", "breadcrump"..)
-    String name;
-
-    // data that should be rendered.
-    protected Map<String, Object> data = new HashMap<String, Object>();
 
     public Map<String, Object> getData() {
         return data;

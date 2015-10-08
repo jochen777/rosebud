@@ -54,6 +54,7 @@ public class Loader {
 		fragment.setName(fc.getName());
 
 		fragment.setData(fc.getData());
+		fragment.setInline(fc.getInline());
 
 		if (fc.getBehavs() != null){
 			// load behaviour

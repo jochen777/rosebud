@@ -25,12 +25,12 @@ public class ContentBuilder {
     Configuration configuration;
 
     public static int instancecount = 0;
-    
+
     public ContentBuilder() {
-        instancecount ++;
+        instancecount++;
         System.err.println("I was instanciated:" + instancecount);
     }
-    
+
     public Configuration getConfiguration() {
         return configuration;
     }
@@ -39,8 +39,6 @@ public class ContentBuilder {
     TemplateBroker templateBroker;
     TemplateRenderer templateRenderer;
 
-
-    
     public void setTemplateRenderer(TemplateRenderer templateRenderer) {
         this.templateRenderer = templateRenderer;
     }
@@ -61,7 +59,8 @@ public class ContentBuilder {
         this.env = env;
     }
 
-    public static ContentBuilder getSimpleContentBuilder(HttpServletRequest req) {
+    public static ContentBuilder getSimpleContentBuilder(
+            HttpServletRequest req) {
         ContentBuilder cb = new ContentBuilder();
         cb.loader = new Loader();
         cb.configuration = new Configuration();
@@ -74,40 +73,38 @@ public class ContentBuilder {
 
         return cb;
     }
-    
+
     public Fragment load(String pageTemplateName) {
         return loader.load(pageTemplateName);
     }
-    
+
     // RFE: Reduce number of arguments
-    public String runWithHole(String pageTemplateName, 
-            Data holeData, Data globalData, String fragmentTemplate, HttpServletRequest req) {
+    public String runWithHole(String pageTemplateName, Data holeData,
+            Data globalData, String fragmentTemplate, HttpServletRequest req) {
         Fragment root = loader.load(pageTemplateName);
         TreeHelper.putAdHocFragmentInHole(root, holeData, fragmentTemplate);
-        //getConfiguration().setDebugLevel(Configuration.DebugLevel.DEBUG);
+        // getConfiguration().setDebugLevel(Configuration.DebugLevel.DEBUG);
 
         this.env.setReq(req);
         return createPage(globalData.getMap(), root);
     }
-    
-    
+
     public String run(String pageName) {
         Fragment root = loader.load(pageName);
         return createPage(null, root);
     }
 
-    
     public String run(String pageName, HttpServletRequest req) {
         this.env.setReq(req);
         return this.run(pageName);
     }
 
-    public String createPage(Data globals, Fragment root, HttpServletRequest req) {
+    public String createPage(Data globals, Fragment root,
+            HttpServletRequest req) {
         this.env.setReq(req);
         return createPage(globals.getMap(), root);
     }
-    
-    
+
     public String createPage(Map<String, Object> globals, Fragment root,
             TemplateBroker templateBroker) {
 
@@ -135,12 +132,12 @@ public class ContentBuilder {
         } catch (IOException e) {
             throw new RuntimeException("Can not read /templates/ dir", e);
         }
-        Mustache.Compiler c = Mustache.compiler().withLoader(
-                new Mustache.TemplateLoader() {
+        Mustache.Compiler c = Mustache.compiler()
+                .withLoader(new Mustache.TemplateLoader() {
                     public Reader getTemplate(String name)
                             throws FileNotFoundException {
-                        return new FileReader(new File(templateDir, name
-                                + ".html"));
+                        return new FileReader(
+                                new File(templateDir, name + ".html"));
                     }
                 });
         return c;
@@ -148,19 +145,25 @@ public class ContentBuilder {
 
     // Generates the HTML out of the prepared tree
     // TODO: DO this in a an own class
-    private String getContent(Fragment fragment, TemplateBroker templateBroker) {
+    private String getContent(Fragment fragment,
+            TemplateBroker templateBroker) {
         StringBuilder start = new StringBuilder();
 
-        Resource resource = new ClassPathResource(
-                templateBroker.getTemplate(fragment.getStartTemplate())
-                        + ".html");
         String templateText;
-        try {
-            templateText = RosebudHelper.readFile(resource.getInputStream());
-        } catch (IOException e) {
-            return ErrorHandler.getTemplateRenderErrorMessage(e, fragment);
+        if (fragment.getStartTemplate() != null) {
+            Resource resource = new ClassPathResource(
+                    templateBroker.getTemplate(fragment.getStartTemplate())
+                            + ".html");
+            try {
+                templateText = RosebudHelper
+                        .readFile(resource.getInputStream());
+            } catch (IOException e) {
+                return ErrorHandler.getTemplateRenderErrorMessage(e, fragment);
+            }
+        } else {
+            templateText = fragment.getInline();
         }
-
+        
         String[] templateChunks = RosebudHelper
                 .getChunksOfTemplate(templateText);
 
@@ -199,7 +202,8 @@ public class ContentBuilder {
     }
 
     // Prepares the tree
-    private static void registerListeners(Fragment fragment, EventBus eventBus) {
+    private static void registerListeners(Fragment fragment,
+            EventBus eventBus) {
         List<Behaviour> behaviours = fragment.getBehavoiours();
         for (Behaviour behaviour : behaviours) {
             behaviour.registerListeners(eventBus);

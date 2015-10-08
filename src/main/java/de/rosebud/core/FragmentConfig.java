@@ -20,6 +20,18 @@ public class FragmentConfig {
 	
 	FragmentWrapper wrap;
 	
+	// inline template
+	String inline;
+
+	public String getInline() {
+        return inline;
+    }
+
+    public void setInline(String inline) {
+        this.inline = inline;
+    }
+
+	
 	public FragmentWrapper getWrap() {
         return wrap;
     }

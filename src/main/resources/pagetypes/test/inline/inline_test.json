@@ -1,0 +1,11 @@
+{
+    "inline": "Parent-Start ##CONT## Parent-End",
+    "childs": [
+        {
+            "template": "/templates/test/unittest_child",
+            "data": {
+                "cont": "Child_inline"
+            }
+        }
+    ]
+}
