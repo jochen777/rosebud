@@ -86,7 +86,7 @@ public class ContentBuilder {
         // getConfiguration().setDebugLevel(Configuration.DebugLevel.DEBUG);
 
         this.env.setReq(req);
-        return createPage(globalData.getMap(), root);
+        return createPage(globalData, root);
     }
 
     public String run(String pageName) {
@@ -98,11 +98,22 @@ public class ContentBuilder {
         this.env.setReq(req);
         return this.run(pageName);
     }
+    
+    public String run(String pageName, Data globals, HttpServletRequest req) {
+      this.env.setReq(req);
+      return this.run(pageName, globals);
+      
+    }
+    
+    public String run(String pageName, Data globals) {
+      Fragment root = loader.load(pageName);
+      return createPage(globals, root);
+  }
 
     public String createPage(Data globals, Fragment root,
             HttpServletRequest req) {
         this.env.setReq(req);
-        return createPage(globals.getMap(), root);
+        return createPage(globals, root);
     }
 
     public String createPage(Map<String, Object> globals, Fragment root,
@@ -120,8 +131,8 @@ public class ContentBuilder {
         return getContent(root, templateBroker);
     }
 
-    public String createPage(Map<String, Object> globals, Fragment root) {
-        return createPage(globals, root, templateBroker);
+    public String createPage(Data globals, Fragment root) {
+        return createPage(globals!=null?globals.getMap():null, root, templateBroker);
     }
 
     public static Mustache.Compiler prepareTemplateRenderer() {
@@ -188,7 +199,8 @@ public class ContentBuilder {
         // add globals to fragment-data
         // Beware: globals will overwrite locals!!
         if (globals != null) {
-            fragment.getData().putAll(globals);
+          fragment.getData().put("_globals", globals);
+            //fragment.getData().putAll(globals);
         }
 
         // RFE: Do this async?

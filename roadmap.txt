@@ -29,12 +29,15 @@ New complex websites in minutes.
 * page-structure "inheritance" for cross cutting concerns (global configs: for project, for direcotry, for page. (templatename, behavirours, data, caching)
 * Fragment-Tree at the bottom with nice styles and more info (OK)
 * Fragment ref not perfect: Something like wrapper would be a nice addition (OK)
+* inline JSON - HTML Tags :-P (OK)
+* Give out data in debug-mode per fragment
 * Clean up ContentBuilder
 * Harmonise pageConfigName
 * Harmonise Data
 * move Page rendering out of ContentBuilder 
 * create more clever caching
-* inline JSON - HTML Tags :-P
+* More unit test
+* make it multi-threading safe
 
 
 * create a page-wide logging-buffer. Can be outputted under page in browser.
@@ -60,7 +63,7 @@ New complex websites in minutes.
 TBD:
 * How to handle multinational-stuff?
 * Is global data really useful? (YES!)
-* Useful to have an "end-template"? or better a template with an embedded Tag (<ROSEBUD_CONTENT>), like Gauss VIP?(OK -> Just one Template with a ###Content###)
+* Useful to have an "end-template"? or better a template with an embedded Tag (<ROSEBUD_CONTENT>), like Gauss VIP?(OK -> Just one Template with a ###Content###) 
 * Event-System or better a message-bus?
 * Possible to use different template-engines PER PAGE. (But will anybody want to use this?)
 

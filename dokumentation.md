@@ -13,3 +13,4 @@ Todo:
 * TemplateBroker
 * Environment
 * Javascript
+* putting and accessing global data (is in "_globals" in every fragment) 

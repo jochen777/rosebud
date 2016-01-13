@@ -33,6 +33,7 @@ public class CollectTreeBehaviour extends DefaultBehaviour implements Behaviour{
 	private String createTreeAsString(Fragment node, String indent){
 		StringBuilder content = new StringBuilder();
 		content.append(indent).append(node.getStartTemplate()).append("<br>");
+		content.append("<strong>" + node.getData() + "</strong><br>");
 		for (Fragment child : node.getChilds()) {
 			content.append(createTreeAsString(child, indent+"-"));
 		}

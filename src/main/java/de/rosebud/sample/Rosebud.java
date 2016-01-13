@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import de.rosebud.Data;
 import de.rosebud.core.Configuration;
 import de.rosebud.core.ContentBuilder;
 import de.rosebud.core.Fragment;
@@ -28,7 +29,7 @@ public class Rosebud {
 	@RequestMapping("/rosebud")
 	public @ResponseBody String test(HttpServletRequest req) {
 		ContentBuilder cb = ContentBuilder.getSimpleContentBuilder(req);
-		return cb.run("/pagetypes/bootstrap/sample");
+		return cb.run("/pagetypes/bootstrap/sample", provideGlobalData());
 	}
 
 	@RequestMapping("/sport")
@@ -38,7 +39,7 @@ public class Rosebud {
 		Fragment root = loader.load("/pagetypes/bootstrap/sample");
 		RosebudHelper.getFragmentWithName(root, "keyvisual").addSingleData(
 				"headline", "Die Sportrubrik");
-		return cb.createPage(null, root);
+		return cb.createPage(provideGlobalData(), root);
 	}
 
 	@RequestMapping("/art")
@@ -57,6 +58,12 @@ public class Rosebud {
 		Fragment root = loader.load("/pagetypes/test/sample_js");
 		return cb.createPage(null, root);
 	}
+
+    private Data provideGlobalData() {
+      Data data = new Data();
+      data.addData("title", "This is the Start Page Blueprint");
+      return data;
+  }
 
 
 }
