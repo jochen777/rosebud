@@ -9,7 +9,7 @@ import de.rosebud.core.ContentBuilder;
 
 // Tests rosebud inline template ability
 public class InlineTemplateTest {
-    
+
     @Test
     public void testInlineTemplates() {
         MockHttpServletRequest mockedRequest = new MockHttpServletRequest();

@@ -1,7 +1,7 @@
 {
-    "template": "/templates/test/unittest",
-    "name": "container",
-    "data": {
-        "test": "mytest"
-    }
+  "template": "/templates/test/unittest",
+  "name": "container",
+  "data": {
+    "test": "mytest"
+  }
 }

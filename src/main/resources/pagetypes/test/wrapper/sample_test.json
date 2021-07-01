@@ -1,18 +1,18 @@
 {
-    "template": "/templates/test/unittest_child",
-            "data": {
-                "cont": "Child1"
-            },
-    "wrap": {
-        "ref": "/pagetypes/test/wrapper/sample_test_wrapper",
-        "containername": "container"
-    },
-    "childs": [
-        {
-            "template": "/templates/test/unittest_child",
-            "data": {
-                "cont": "Child2"
-            }
-        }
-    ]
+  "template": "/templates/test/unittest_child",
+  "data": {
+    "cont": "Child1"
+  },
+  "wrap": {
+    "ref": "/pagetypes/test/wrapper/sample_test_wrapper",
+    "containername": "container"
+  },
+  "childs": [
+    {
+      "template": "/templates/test/unittest_child",
+      "data": {
+        "cont": "Child2"
+      }
+    }
+  ]
 }

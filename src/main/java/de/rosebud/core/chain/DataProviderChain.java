@@ -15,12 +15,12 @@ public class DataProviderChain {
         dataProviderChain.add(dp);
         return this;
     }
-    
+
     public DataProviderChain addDataProvideChain(DataProviderChain chainToAdd) {
         dataProviderChain.addAll(chainToAdd.dataProviderChain);
         return this;
     }
-    
+
     public Map<String, Object> enrichData(HttpServletRequest req) {
         Map<String, Object> global = new HashMap<>();
         for (DataProvider dataProvider : dataProviderChain) {
@@ -28,5 +28,5 @@ public class DataProviderChain {
         }
         return global;
     }
-    
+
 }

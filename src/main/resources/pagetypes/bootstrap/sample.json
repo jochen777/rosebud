@@ -1,74 +1,74 @@
 {
-    "template": "/de/rosebud/sample/frags/head/head",
-    "cache": "complete",
-    "data": {
-        "title": "Rosebud Bootstrap Sample"
-    },
-    "childs": [
+  "template": "/de/rosebud/sample/frags/head/head",
+  "cache": "complete",
+  "data": {
+    "title": "Rosebud Bootstrap Sample"
+  },
+  "childs": [
+    {
+      "behavs": [
+        "de.rosebud.sample.frags.navi.NaviFragment"
+      ],
+      "template": "/de/rosebud/sample/frags/navi/navi",
+      "data": {
+        "brandname": "SampleBrand",
+        "navi": [
+          {
+            "label": "Sport",
+            "link": "/sport",
+            "active": false
+          },
+          {
+            "label": "Sport again",
+            "link": "/sport",
+            "active": false
+          },
+          {
+            "label": "Art",
+            "link": "/art",
+            "active": false
+          }
+        ]
+      },
+      "childs": [
         {
-            "behavs": [
-                "de.rosebud.sample.frags.navi.NaviFragment"
-            ],
-            "template": "/de/rosebud/sample/frags/navi/navi",
-            "data": {
-                "brandname": "Rosebud",
-                "navi": [
-                    {
-                        "label": "Sport",
-                        "link": "/sport",
-                        "active": false
-                    },
-                    {
-                        "label": "Politics",
-                        "link": "/politics",
-                        "active": false
-                    },
-                    {
-                        "label": "Art",
-                        "link": "/art",
-                        "active": false
-                    }
-                ]
-            },
-            "childs": [
-                {
-                    "name": "keyvisual",
-                    "template": "/de/rosebud/sample/frags/keyvisual/keyvisual",
-                    "data": {
-                        "headline": "Rosebud with Bootstrap",
-                        "subheadline": "A powerful component framework on top your favourite HTTP Framework. Build for your productivity"
-                    }
-                }
-            ]
+          "name": "keyvisual",
+          "template": "/de/rosebud/sample/frags/keyvisual/keyvisual",
+          "data": {
+            "headline": "Rosebud with Bootstrap",
+            "subheadline": "!A powerful component framework on top your favourite HTTP Framework. Build for your productivity"
+          }
+        }
+      ]
+    },
+    {
+      "template": "/de/rosebud/sample/frags/container/container",
+      "childs": [
+        {
+          "template": "/de/rosebud/sample/frags/article/article",
+          "data": {
+            "headline": "Artikel1 Headline",
+            "text": "A powerful component framework on top your favourite HTTP Framework. Build for your productivity",
+            "link": "Mehr.."
+          }
         },
         {
-            "template": "/de/rosebud/sample/frags/container/container",
-            "childs": [
-                {
-                    "template": "/de/rosebud/sample/frags/article/article",
-                    "data": {
-                        "headline": "Artikel1 Headline",
-                        "text": "A powerful component framework on top your favourite HTTP Framework. Build for your productivity",
-                        "link": "Mehr.."
-                    }
-                },
-                {
-                    "template": "/de/rosebud/sample/frags/article/article",
-                    "data": {
-                        "headline": "Artikel2 Headline",
-                        "text": "A powerful component framework on top your favourite HTTP Framework. Build for your productivity",
-                        "link": "Mehr.."
-                    }
-                },
-                {
-                    "template": "/de/rosebud/sample/frags/article/article",
-                    "data": {
-                        "headline": "Artikel3 Headline",
-                        "text": "A powerful component framework on top your favourite HTTP Framework. Build for your productivity",
-                        "link": "Mehr.."
-                    }
-                }
-            ]
+          "template": "/de/rosebud/sample/frags/article/article",
+          "data": {
+            "headline": "Artikel2 Headline",
+            "text": "A powerful component framework on top your favourite HTTP Framework. Build for your productivity",
+            "link": "Mehr.."
+          }
+        },
+        {
+          "template": "/de/rosebud/sample/frags/article/article",
+          "data": {
+            "headline": "Artikel3 Headline",
+            "text": "A powerful component framework on top your favourite HTTP Framework. Build for your productivity",
+            "link": "Mehr.."
+          }
         }
-    ]
+      ]
+    }
+  ]
 }

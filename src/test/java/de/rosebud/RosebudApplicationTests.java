@@ -14,6 +14,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import de.rosebud.core.ContentBuilder;
 import de.rosebud.core.Fragment;
 import de.rosebud.core.Loader;
+
 import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -21,22 +22,22 @@ import static org.junit.Assert.assertEquals;
 @WebAppConfiguration
 public class RosebudApplicationTests {
 
-	@Autowired
-	Loader loader;
+    @Autowired
+    Loader loader;
 
-	@Test
-	public void contextLoads() {
-	}
-	
-	@Test
-	public void testExampleTree() {
-		MockHttpServletRequest mockedRequest = new MockHttpServletRequest();
-		mockedRequest.setRequestURI("test00");
+    @Test
+    public void contextLoads() {
+    }
 
-		ContentBuilder cb = ContentBuilder.getSimpleContentBuilder(mockedRequest);
-		String htmlOutput = cb.run("/pagetypes/test/sample_test");
+    @Test
+    public void testExampleTree() {
+        MockHttpServletRequest mockedRequest = new MockHttpServletRequest();
+        mockedRequest.setRequestURI("test00");
 
-		assertEquals("Hello World mytestChild Child1Child Child2", htmlOutput);
-	}
+        ContentBuilder cb = ContentBuilder.getSimpleContentBuilder(mockedRequest);
+        String htmlOutput = cb.run("/pagetypes/test/sample_test");
+
+        assertEquals("Hello World mytestChild Child1Child Child2", htmlOutput);
+    }
 
 }

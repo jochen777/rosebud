@@ -15,29 +15,29 @@ import de.rosebud.sample.events.AddResourceToHeaderEvent;
 
 // is an html - head element with title, js-includes etc.
 public class HeadFragment extends DefaultBehaviour implements Behaviour {
-	
-	List<String> jsFileUrls = new ArrayList<String>();
 
-	@Subscribe
-	public void listen(AddResourceToHeaderEvent addResourceToHeaderEvent) {
-		jsFileUrls.add(addResourceToHeaderEvent.getJavascriptPath());
-		String jsFilesKey = "jsfiles";
-		this.getHostFragment().getData().put(jsFilesKey, jsFileUrls);
-	}
-	
-	
-	@Override
-	public void registerListeners(EventBus eventBus){
-		// RFE: This is always the same! So perhaps better: Just expose a boolean, if this fragment wants to listen
-		eventBus.register(this);
-	}
+    List<String> jsFileUrls = new ArrayList<String>();
+
+    @Subscribe
+    public void listen(AddResourceToHeaderEvent addResourceToHeaderEvent) {
+        jsFileUrls.add(addResourceToHeaderEvent.getJavascriptPath());
+        String jsFilesKey = "jsfiles";
+        this.getHostFragment().getData().put(jsFilesKey, jsFileUrls);
+    }
 
 
-	@Override
-	public void collectData(Map<String, Object> additionalData,
-			EventBus eventBus , Environment env) {
-		// nothing to do here!
-		
-	}
+    @Override
+    public void registerListeners(EventBus eventBus) {
+        // RFE: This is always the same! So perhaps better: Just expose a boolean, if this fragment wants to listen
+        eventBus.register(this);
+    }
+
+
+    @Override
+    public void collectData(Map<String, Object> additionalData,
+                            EventBus eventBus, Environment env) {
+        // nothing to do here!
+
+    }
 
 }

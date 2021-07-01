@@ -17,19 +17,18 @@ import de.rosebud.sample.MobileAwareTemplateBroker;
 
 public class JSBehaviourTest {
 
-	@Test
-	public void testJSBehaviour() {
-		Loader loader = new Loader();
-		Fragment root = loader.load("/pagetypes/test/sample_js");
+    @Test
+    public void testJSBehaviour() {
+        Loader loader = new Loader();
+        Fragment root = loader.load("/pagetypes/test/sample_js");
 
-		MockHttpServletRequest mockedRequest = new MockHttpServletRequest();
-		mockedRequest.setRequestURI("test00");
-		ContentBuilder cb = ContentBuilder.getSimpleContentBuilder(mockedRequest);
-		String htmlOutput = cb.createPage(null, root);
+        MockHttpServletRequest mockedRequest = new MockHttpServletRequest();
+        mockedRequest.setRequestURI("test00");
+        ContentBuilder cb = ContentBuilder.getSimpleContentBuilder(mockedRequest);
+        String htmlOutput = cb.createPage(null, root);
 
-		assertEquals("Hello World Javascript output!Child Child1Child Child2", htmlOutput);
-	}
-
+        assertEquals("Hello World Javascript output!Child Child1Child Child2", htmlOutput);
+    }
 
 
 }

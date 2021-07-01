@@ -10,9 +10,8 @@ import de.rosebud.Data;
 /**
  * Core fragment Object. Multiple fragments form a tree. A fragment gets or
  * collects some data and render this with a template
- * 
- * @author jochen
  *
+ * @author jochen
  */
 public class Fragment {
 
@@ -26,7 +25,7 @@ public class Fragment {
 
     // Template-Name that should be rendered.
     String startTemplate;
-    
+
     // RFE: Possible always load templates inline at first
     // inline template
     String inline;
@@ -92,14 +91,14 @@ public class Fragment {
             this.data = data;
         }
     }
-    
+
     public Fragment setData(Data data) {
         if (data != null) {
             this.data = data.getMap();
         }
         return this;
     }
-    
+
     public static Fragment build() {
         return new Fragment();
     }

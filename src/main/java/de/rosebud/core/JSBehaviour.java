@@ -15,38 +15,37 @@ import org.springframework.core.io.Resource;
 import com.google.common.eventbus.EventBus;
 
 // wrapper for a behaviour that is written in javascript
-public class JSBehaviour extends DefaultBehaviour implements Behaviour{
-	
-	String jsFile = null;
-	
+public class JSBehaviour extends DefaultBehaviour implements Behaviour {
 
-	public String getJsFile() {
-		return jsFile;
-	}
+    String jsFile = null;
 
 
-	public void setJsFile(String jsFile) {
-		this.jsFile = jsFile;
-	}
+    public String getJsFile() {
+        return jsFile;
+    }
 
 
-	@Override
-	public void collectData(Map<String, Object> additionalData,
-			EventBus eventBus, Environment env) {
-		// RFE: Request only one Engine for the server!
-		ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
-		try {
-			Resource resource = new ClassPathResource(jsFile);
-			engine.eval(new FileReader(resource.getFile()));
-			Invocable invocable = (Invocable) engine;
+    public void setJsFile(String jsFile) {
+        this.jsFile = jsFile;
+    }
 
-			Object result = invocable.invokeFunction("collectData", this.getHostFragment().getData(), eventBus, env);
-		} catch (ScriptException | IOException | NoSuchMethodException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 
-	
+    @Override
+    public void collectData(Map<String, Object> additionalData,
+                            EventBus eventBus, Environment env) {
+        // RFE: Request only one Engine for the server!
+        ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
+        try {
+            Resource resource = new ClassPathResource(jsFile);
+            engine.eval(new FileReader(resource.getFile()));
+            Invocable invocable = (Invocable) engine;
+
+            Object result = invocable.invokeFunction("collectData", this.getHostFragment().getData(), eventBus, env);
+        } catch (ScriptException | IOException | NoSuchMethodException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
 
 }

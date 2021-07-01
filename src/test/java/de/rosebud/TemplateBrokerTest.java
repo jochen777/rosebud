@@ -17,26 +17,24 @@ import de.rosebud.sample.MobileAwareTemplateBroker;
 
 public class TemplateBrokerTest {
 
-	@Test
-	public void testMobileTree() {
+    @Test
+    public void testMobileTree() {
 
-		MockHttpServletRequest mockedRequest = new MockHttpServletRequest();
-		mockedRequest.setRequestURI("test00");
-		mockedRequest.addHeader("User-Agent", "something phone 88");
+        MockHttpServletRequest mockedRequest = new MockHttpServletRequest();
+        mockedRequest.setRequestURI("test00");
+        mockedRequest.addHeader("User-Agent", "something phone 88");
 
-		MobileAwareTemplateBroker templateBroker = new MobileAwareTemplateBroker();
-		templateBroker.init(mockedRequest);
+        MobileAwareTemplateBroker templateBroker = new MobileAwareTemplateBroker();
+        templateBroker.init(mockedRequest);
 
 
-		ContentBuilder cb = ContentBuilder.getSimpleContentBuilder(mockedRequest);
-		cb.setTemplateBroker(templateBroker);
-		String htmlOutput = cb.run("/pagetypes/test/sample_test");
+        ContentBuilder cb = ContentBuilder.getSimpleContentBuilder(mockedRequest);
+        cb.setTemplateBroker(templateBroker);
+        String htmlOutput = cb.run("/pagetypes/test/sample_test");
 
-		
-		
-		assertEquals("Hello World Phone mytestChild Phone Child1Child Phone Child2", htmlOutput);
-	}
 
+        assertEquals("Hello World Phone mytestChild Phone Child1Child Phone Child2", htmlOutput);
+    }
 
 
 }

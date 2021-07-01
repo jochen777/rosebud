@@ -1,22 +1,26 @@
 {
-    "behavs": ["de.rosebud.sample.HeadFragment"],
-    "template": "/templates/test/head_js",
-    "data": {
-        "test": "mytest"
+  "behavs": [
+    "de.rosebud.sample.HeadFragment"
+  ],
+  "template": "/templates/test/head_js",
+  "data": {
+    "test": "mytest"
+  },
+  "childs": [
+    {
+      "template": "/templates/test/unittest_child",
+      "data": {
+        "cont": "Child1"
+      }
     },
-    "childs": [
-        {
-            "template": "/templates/test/unittest_child",
-            "data": {
-                "cont": "Child1"
-            }
-        },
-        {
-            "behavs": ["de.rosebud.sample.ExampleJSIncluddeFragment"],
-            "template": "/templates/test/unittest_child",
-            "data": {
-                "cont": "Child2"
-            }
-        }
-    ]
+    {
+      "behavs": [
+        "de.rosebud.sample.ExampleJSIncluddeFragment"
+      ],
+      "template": "/templates/test/unittest_child",
+      "data": {
+        "cont": "Child2"
+      }
+    }
+  ]
 }

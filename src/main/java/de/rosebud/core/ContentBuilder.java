@@ -80,7 +80,7 @@ public class ContentBuilder {
 
     // RFE: Reduce number of arguments
     public String runWithHole(String pageTemplateName, Data holeData,
-            Data globalData, String fragmentTemplate, HttpServletRequest req) {
+                              Data globalData, String fragmentTemplate, HttpServletRequest req) {
         Fragment root = loader.load(pageTemplateName);
         TreeHelper.putAdHocFragmentInHole(root, holeData, fragmentTemplate);
         // getConfiguration().setDebugLevel(Configuration.DebugLevel.DEBUG);
@@ -98,26 +98,26 @@ public class ContentBuilder {
         this.env.setReq(req);
         return this.run(pageName);
     }
-    
+
     public String run(String pageName, Data globals, HttpServletRequest req) {
-      this.env.setReq(req);
-      return this.run(pageName, globals);
-      
+        this.env.setReq(req);
+        return this.run(pageName, globals);
+
     }
-    
+
     public String run(String pageName, Data globals) {
-      Fragment root = loader.load(pageName);
-      return createPage(globals, root);
-  }
+        Fragment root = loader.load(pageName);
+        return createPage(globals, root);
+    }
 
     public String createPage(Data globals, Fragment root,
-            HttpServletRequest req) {
+                             HttpServletRequest req) {
         this.env.setReq(req);
         return createPage(globals, root);
     }
 
     public String createPage(Map<String, Object> globals, Fragment root,
-            TemplateBroker templateBroker) {
+                             TemplateBroker templateBroker) {
 
         if (configuration.getDebugLevel() == configuration.debugLevel.DEBUG) {
             Fragment debugComponent = loader
@@ -132,7 +132,7 @@ public class ContentBuilder {
     }
 
     public String createPage(Data globals, Fragment root) {
-        return createPage(globals!=null?globals.getMap():null, root, templateBroker);
+        return createPage(globals != null ? globals.getMap() : null, root, templateBroker);
     }
 
     public static Mustache.Compiler prepareTemplateRenderer() {
@@ -157,7 +157,7 @@ public class ContentBuilder {
     // Generates the HTML out of the prepared tree
     // TODO: DO this in a an own class
     private String getContent(Fragment fragment,
-            TemplateBroker templateBroker) {
+                              TemplateBroker templateBroker) {
         StringBuilder start = new StringBuilder();
 
         String templateText;
@@ -174,7 +174,7 @@ public class ContentBuilder {
         } else {
             templateText = fragment.getInline();
         }
-        
+
         String[] templateChunks = RosebudHelper
                 .getChunksOfTemplate(templateText);
 
@@ -194,12 +194,12 @@ public class ContentBuilder {
 
     // Prepares the tree
     private static void contentLoad(Map<String, Object> globals,
-            Fragment fragment, EventBus eventBus, Environment env) {
+                                    Fragment fragment, EventBus eventBus, Environment env) {
 
         // add globals to fragment-data
         // Beware: globals will overwrite locals!!
         if (globals != null) {
-          fragment.getData().put("_globals", globals);
+            fragment.getData().put("_globals", globals);
             //fragment.getData().putAll(globals);
         }
 
@@ -215,7 +215,7 @@ public class ContentBuilder {
 
     // Prepares the tree
     private static void registerListeners(Fragment fragment,
-            EventBus eventBus) {
+                                          EventBus eventBus) {
         List<Behaviour> behaviours = fragment.getBehavoiours();
         for (Behaviour behaviour : behaviours) {
             behaviour.registerListeners(eventBus);

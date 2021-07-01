@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class SpringContentBuilderFactory {
-    
+
     @Autowired
     Loader loader;
 
@@ -18,7 +18,7 @@ public class SpringContentBuilderFactory {
 
     @Autowired
     freemarker.template.Configuration freemarkerConfiguration;
-    
+
     public ContentBuilder getFreemarkerBuilder(
             HttpServletRequest req) {
         ContentBuilder cb = new ContentBuilder();
@@ -34,5 +34,5 @@ public class SpringContentBuilderFactory {
 
         return cb;
     }
-    
+
 }

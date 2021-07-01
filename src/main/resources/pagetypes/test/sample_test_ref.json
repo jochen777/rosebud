@@ -1,11 +1,11 @@
 {
-    "template": "/templates/test/unittest",
-    "data": {
-        "test": "Parent"
-    },
-    "childs": [
-        {
-            "ref": "/pagetypes/test/sample_test"
-        }
-    ]
+  "template": "/templates/test/unittest",
+  "data": {
+    "test": "Parent"
+  },
+  "childs": [
+    {
+      "ref": "/pagetypes/test/sample_test"
+    }
+  ]
 }

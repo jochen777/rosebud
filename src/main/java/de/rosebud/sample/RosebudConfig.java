@@ -16,7 +16,7 @@ public class RosebudConfig {
 
     @Autowired
     Loader loader;
-    
+
     @Bean
     public ContentBuilder simpleContentBuilder() {
         ContentBuilder cb = new ContentBuilder();
@@ -29,6 +29,6 @@ public class RosebudConfig {
         cb.setTemplateRenderer(mustacheTemplateRenderer);
         return cb;
     }
-    
-    
+
+
 }

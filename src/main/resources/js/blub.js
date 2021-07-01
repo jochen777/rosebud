@@ -1,10 +1,12 @@
 function collectData(additionalData,
-			eventBus, env) {
-	
-	additionalData.put("test", "Javascript output!");
-	
+                     eventBus, env) {
+
+    additionalData.put("test", "Javascript output!");
+
 }
-	
-function registerListeners(eventBus) {}
-	
-function setHostFragment(fragment) {}
+
+function registerListeners(eventBus) {
+}
+
+function setHostFragment(fragment) {
+}

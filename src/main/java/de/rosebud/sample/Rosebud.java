@@ -23,47 +23,51 @@ import de.rosebud.core.RosebudHelper;
 @Controller
 public class Rosebud {
 
-	@Autowired
-	Loader loader;
+    @Autowired
+    Loader loader;
 
-	@RequestMapping("/rosebud")
-	public @ResponseBody String test(HttpServletRequest req) {
-		ContentBuilder cb = ContentBuilder.getSimpleContentBuilder(req);
-		return cb.run("/pagetypes/bootstrap/sample", provideGlobalData());
-	}
+    @RequestMapping("/rosebud")
+    public @ResponseBody
+    String test(HttpServletRequest req) {
+        ContentBuilder cb = ContentBuilder.getSimpleContentBuilder(req);
+        return cb.run("/pagetypes/bootstrap/sample", provideGlobalData());
+    }
 
-	@RequestMapping("/sport")
-	public @ResponseBody String sport(HttpServletRequest req) {
-		ContentBuilder cb = ContentBuilder.getSimpleContentBuilder(req);
-		cb.getConfiguration().setDebugLevel(Configuration.DebugLevel.DEBUG);
-		Fragment root = loader.load("/pagetypes/bootstrap/sample");
-		RosebudHelper.getFragmentWithName(root, "keyvisual").addSingleData(
-				"headline", "Die Sportrubrik");
-		return cb.createPage(provideGlobalData(), root);
-	}
+    @RequestMapping("/sport")
+    public @ResponseBody
+    String sport(HttpServletRequest req) {
+        ContentBuilder cb = ContentBuilder.getSimpleContentBuilder(req);
+        cb.getConfiguration().setDebugLevel(Configuration.DebugLevel.DEBUG);
+        Fragment root = loader.load("/pagetypes/bootstrap/sample");
+        RosebudHelper.getFragmentWithName(root, "keyvisual").addSingleData(
+                "headline", "Die Sportrubrik");
+        return cb.createPage(provideGlobalData(), root);
+    }
 
-	@RequestMapping("/art")
-	public @ResponseBody String art(HttpServletRequest req) {
-		ContentBuilder cb = ContentBuilder.getSimpleContentBuilder(req);
-		cb.getConfiguration().setDebugLevel(Configuration.DebugLevel.DEBUG);
-		Fragment root = loader.load("/pagetypes/bootstrap/sample");
-		RosebudHelper.getFragmentWithName(root, "keyvisual").addSingleData(
-				"headline", "Die Kunstrubrik");
-		return cb.createPage(null, root);
-	}
-	
-	@RequestMapping("/test")
-	public @ResponseBody String testJS(HttpServletRequest req) {
-		ContentBuilder cb = ContentBuilder.getSimpleContentBuilder(req);
-		Fragment root = loader.load("/pagetypes/test/sample_js");
-		return cb.createPage(null, root);
-	}
+    @RequestMapping("/art")
+    public @ResponseBody
+    String art(HttpServletRequest req) {
+        ContentBuilder cb = ContentBuilder.getSimpleContentBuilder(req);
+        cb.getConfiguration().setDebugLevel(Configuration.DebugLevel.DEBUG);
+        Fragment root = loader.load("/pagetypes/bootstrap/sample");
+        RosebudHelper.getFragmentWithName(root, "keyvisual").addSingleData(
+                "headline", "Die Kunstrubrik");
+        return cb.createPage(null, root);
+    }
+
+    @RequestMapping("/test")
+    public @ResponseBody
+    String testJS(HttpServletRequest req) {
+        ContentBuilder cb = ContentBuilder.getSimpleContentBuilder(req);
+        Fragment root = loader.load("/pagetypes/test/sample_js");
+        return cb.createPage(null, root);
+    }
 
     private Data provideGlobalData() {
-      Data data = new Data();
-      data.addData("title", "This is the Start Page Blueprint");
-      return data;
-  }
+        Data data = new Data();
+        data.addData("title", "This is the Start Page Blueprint");
+        return data;
+    }
 
 
 }

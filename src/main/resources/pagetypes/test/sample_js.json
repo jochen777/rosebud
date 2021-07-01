@@ -1,21 +1,23 @@
 {
-    "template": "/templates/test/unittest",
-    "behavs": ["javascript:/js/blub.js"],
-    "data": {
-        "test": "mytest"
+  "template": "/templates/test/unittest",
+  "behavs": [
+    "javascript:/js/blub.js"
+  ],
+  "data": {
+    "test": "mytest"
+  },
+  "childs": [
+    {
+      "template": "/templates/test/unittest_child",
+      "data": {
+        "cont": "Child1"
+      }
     },
-    "childs": [
-        {
-            "template": "/templates/test/unittest_child",
-            "data": {
-                "cont": "Child1"
-            }
-        },
-        {
-            "template": "/templates/test/unittest_child",
-            "data": {
-                "cont": "Child2"
-            }
-        }
-    ]
+    {
+      "template": "/templates/test/unittest_child",
+      "data": {
+        "cont": "Child2"
+      }
+    }
+  ]
 }

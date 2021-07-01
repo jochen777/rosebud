@@ -17,19 +17,18 @@ import de.rosebud.sample.MobileAwareTemplateBroker;
 
 public class PageWrapperTest {
 
-	@Test
-	public void testPageWrapper() {
-		// tests, if "ref" will load a foreign template tree
+    @Test
+    public void testPageWrapper() {
+        // tests, if "ref" will load a foreign template tree
 
-		MockHttpServletRequest mockedRequest = new MockHttpServletRequest();
-		mockedRequest.setRequestURI("test00");
+        MockHttpServletRequest mockedRequest = new MockHttpServletRequest();
+        mockedRequest.setRequestURI("test00");
 
-		ContentBuilder cb = ContentBuilder.getSimpleContentBuilder(mockedRequest);
-		String htmlOutput = cb.run("/pagetypes/test/wrapper/sample_test");
+        ContentBuilder cb = ContentBuilder.getSimpleContentBuilder(mockedRequest);
+        String htmlOutput = cb.run("/pagetypes/test/wrapper/sample_test");
 
-		assertEquals("Hello World mytestChild Child1Child Child2", htmlOutput);
-	}
-
+        assertEquals("Hello World mytestChild Child1Child Child2", htmlOutput);
+    }
 
 
 }
